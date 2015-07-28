@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+                           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd" xmlns:util="http://www.springframework.org/schema/util">
+           
+   <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+      <property name="locations">
+         <list>
+            <value>classpath:default-config.properties</value>
+            <value>file:propertiesTests/external-config-recoverSystem.properties</value>
+         </list>
+      </property>
+      <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
+   </bean>           
+
+   <bean name="diagnosysMap"  class="java.util.HashMap"   lazy-init="true" >
+      <constructor-arg>   
+         <util:map map-class="java.util.HashMap">
+            <entry key="NO_AVAIL_IN_SRP" value="${com.venere.ace.recover.xpath.naSrp}" />
+            <entry key="NO_AVAIL_IN_HDP_SPA" value="${com.venere.ace.recover.xpath.naSpaHdp}" />
+            <entry key="NO_AVAIL_IN_BOOKING_FUNNEL" value="${com.venere.ace.recover.xpath.naBf}" />
+            <entry key="BACKEND_ERROR_IN_BOOKING_FUNNEL" value="${com.venere.ace.recover.xpath.errBf}" />
+         </util:map> 
+      </constructor-arg>
+   </bean>
+   
+   <bean name="errorRecognizedsMap"  class="java.util.HashMap"   lazy-init="true" >
+      <constructor-arg>   
+         <util:map map-class="java.util.HashMap">
+            <entry key="${com.venere.ace.recover.xpath.dualRoomBtn}" value-ref="NO_DUAL_ROOM_FOUND_ON_HDP" />
+            <entry key="${com.venere.ace.recover.xpath.freeCancRoom}" value-ref="NO_FREE_CANC_ROOM_FOUND_ON_HDP" />
+         </util:map> 
+      </constructor-arg>
+   </bean>
+   
+   <bean name="recoverAvailSRP" class="com.venere.utils.test.bl.RecoverAvailSRP" lazy-init="true" >
+      <property name="numberRetries" value="${com.venere.ace.recover.retriesNumber}"/>
+      <property name="dateOffset" value="${com.venere.ace.recover.dateOffset}"/>
+      <property name="alternativeDataRetriever" ref="dataAlternativeDao"/>
+   </bean>
+
+   
+   <bean name="NO_AVAIL_IN_SRP" class="com.venere.utils.dto.DiagnosticDTO" lazy-init="true" >
+      <property name="id" value="1"/>
+      <property name="diagnosis" value="NO AVAIL IN SRP"/>
+      <property name="recover" ref="recoverAvailSRP"/>
+   </bean>
+   
+   <bean name="recoverAvailHDP_SPA" class="com.venere.utils.test.bl.RecoverAvailHDP_SPA" lazy-init="true" >
+      <property name="numberRetries" value="${com.venere.ace.recover.retriesNumber}"/>
+      <property name="dateOffset" value="${com.venere.ace.recover.dateOffset}"/>
+      <property name="alternativeDataRetriever" ref="dataAlternativeDao"/>
+   </bean>
+   
+   <bean name="NO_AVAIL_IN_HDP_SPA" class="com.venere.utils.dto.DiagnosticDTO" lazy-init="true" >
+      <property name="id" value="2"/>
+      <property name="diagnosis" value="NO AVAIL IN HDP SPA"/>
+      <property name="recover" ref="recoverAvailHDP_SPA"/>
+   </bean>
+   
+   <bean name="NO_AVAIL_IN_BOOKING_FUNNEL" class="com.venere.utils.dto.DiagnosticDTO" lazy-init="true" >
+      <property name="id" value="3"/>
+      <property name="diagnosis" value="NO AVAIL IN BOOKING FUNNEL"/>
+   </bean>
+   
+   <bean name="BACKEND_ERROR_IN_BOOKING_FUNNEL" class="com.venere.utils.dto.DiagnosticDTO" lazy-init="true" >
+      <property name="id" value="4"/>
+      <property name="diagnosis" value="BACKEND_ERROR IN BOOKING FUNNEL"/>
+   </bean>
+      
+   <bean name="NO_DUAL_ROOM_FOUND_ON_HDP" class="com.venere.utils.dto.DiagnosticDTO" lazy-init="true" >
+      <property name="id" value="5"/>
+      <property name="diagnosis" value="NO DUAL ROOM FOUND ON HDP"/>
+   </bean>
+   
+   <bean name="NO_FREE_CANC_ROOM_FOUND_ON_HDP" class="com.venere.utils.dto.DiagnosticDTO" lazy-init="true" >
+      <property name="id" value="6"/>
+      <property name="diagnosis" value="FREE CANCELLATION ROOM NOT FOUND IN HDP"/>
+   </bean>
+      
+   <bean name="dataAlternativeDao" class="com.venere.ace.utility.DataFileAlternativeRetrieverDAO" lazy-init="true" >
+      <property name="alternativeHotels">
+         <map>
+            <entry key="oms_1" value="${com.venere.ace.recover.oms_1}" />
+            <entry key="oms_2" value="${com.venere.ace.recover.oms_2}" />
+            <entry key="oms_3" value="${com.venere.ace.recover.oms_3}" />
+            <entry key="oms_4" value="${com.venere.ace.recover.oms_4}" />
+            <entry key="oms_5" value="${com.venere.ace.recover.oms_5}" />
+            <entry key="oms_6" value="${com.venere.ace.recover.oms_6}" />
+         </map>
+      </property>
+   </bean>
+</beans>

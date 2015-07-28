@@ -1,0 +1,107 @@
+/*                   Copyright (c) 2007 Venere Net S.p.A.
+ *                             All Rights Reserved
+ *
+ * This software is the confidential and proprietary information of
+ * Venere Net S.p.A. ("Confidential  Information"). You  shall not disclose
+ * such  Confidential Information and shall use it only in accordance with
+ * the terms  of the license agreement you entered into with Venere Net S.p.A.
+ *
+ * VENERE NET S.P.A. MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY
+ * OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+ * OR NON-INFRINGEMENT. VENERE NET S.P.A. SHALL NOT BE LIABLE FOR ANY DAMAGES
+ * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS
+ * SOFTWARE OR ITS DERIVATIVES.
+ */
+package com.venere.utils.test.bl;
+
+import com.venere.ace.dtos.ATaskResultDTO;
+import com.venere.ace.exception.EHandlerException;
+import com.venere.ace.idtos.ITestRequestDTO;
+import com.venere.ace.interfaces.ICommandResult;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+/**
+ *
+ * @author quatrini-cilia
+ */
+public class CheckSortBy extends AClassTestBL {
+
+    protected Log oLogger = LogFactory.getLog(getClass());
+
+    public CheckSortBy() {
+        super("CheckSortBy");
+    }
+
+    public Map<String, Object> getMapResultContainer() {
+        return oMapResultContainer;
+    }
+
+    public ICommandResult checkOrder(ITestRequestDTO oTest) throws EHandlerException {
+
+        boolean boresult = true;
+        List oListElement = oTest.getInputDataList();
+        String sXpath =  (String) oListElement.get(0);
+        String sWhat =  (String) oListElement.get(1);
+        String sMessage = "ValueCheck Done";
+        List<WebElement> oListWebElement = oBrowser.findElements(By.xpath(sXpath));
+        double iStartingValue = 0;
+        for (Iterator<WebElement> oIt = oListWebElement.iterator(); oIt.hasNext();) {
+            try {
+                WebElement oElement = oIt.next();
+                
+                double oActualValue = getContent((String) oListElement.get(2), oElement);
+
+                int iResult = Double.compare(iStartingValue, oActualValue); //the value 0 if x == y; a value less than 0 if x < y; and a value greater than 0 if x > y
+                if (iResult > 0 && sWhat.equals("asc") && iStartingValue!=0.0){
+                    boresult = false;
+                    sMessage ="Not price ordered. Found "+oActualValue+" but excepted a value major price of "+iStartingValue;
+                    oLogger.error(sMessage);
+                    break;
+                }else if (iResult < 0 && sWhat.equals("desc") && iStartingValue!=0.0){
+                    boresult = false;
+                    sMessage ="Not price ordered. Found "+oActualValue+" but excepted a value minor price of "+iStartingValue;
+                    oLogger.error(sMessage);
+                    break;
+                }else if (iResult < 0 && sWhat.equals("guest_rating") && iStartingValue!=0.0){
+                    boresult = false;
+                    sMessage ="Not guest rating ordered. Found "+oActualValue+" but excepted a value minor of "+iStartingValue;
+                    oLogger.error(sMessage);
+                    break;
+                }else if (iResult < 0 && sWhat.equals("star_rating") && iStartingValue!=0.0){
+                    boresult = false;
+                    sMessage ="Not price ordered. Found "+oActualValue+" but excepted a value minor of "+iStartingValue;
+                    oLogger.error(sMessage);
+                    break;
+                }
+                
+                iStartingValue = oActualValue;
+            } catch (Exception e) {
+                oLogger.error(e);
+            }
+        }
+
+        ATaskResultDTO oResult = new ATaskResultDTO("CheckTaskResult");
+        oResult.setIsCorrect(boresult);
+        oResult.setMessage("Check "+sWhat+" done!!");
+
+        return oResult;
+    }
+
+    
+    private double getContent(String sElement, WebElement oWebElement) throws EHandlerException {
+        
+        String sResult = oWebElement.getAttribute(sElement);
+        if(sElement.equals("class")){
+            sResult = sResult.replace("stars stars-", "");
+        }
+        
+        return Double.parseDouble(sResult);
+    }
+}

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<!-- ================================ -->
+<!-- Venere - LOG4J Configuration     -->
+<!-- PRODUCTION - DEBUG               -->
+<!-- ================================ -->
+
+
+<log4j:configuration>
+
+        <!-- ========= -->
+        <!-- APPENDERS -->
+        <!-- ========= -->
+
+        <!-- Console appender -->
+   
+    <appender name="STDOUT" class="org.apache.log4j.DailyRollingFileAppender">
+      <param name="file"        value="${com.venere.ace.logBaseFolder}/${com.venere.ace.browserSelect}/ACE-STANDARD-log.log"/>
+      <param name="datePattern" value="'.'yyyy-MM-dd"/>
+                <!-- Layout -->
+      <layout class="org.apache.log4j.PatternLayout">
+			<param name="conversionPattern" value="%d %p [%X{com.venere.xhi.ttid}] [%c] - %m%n"/>
+		</layout>
+   </appender> 
+   
+  
+    <appender name="EXTRAS" class="org.apache.log4j.DailyRollingFileAppender">
+      <param name="file"        value="${com.venere.ace.logBaseFolder}/${com.venere.ace.browserSelect}/ACE-EXTRAS-log.log"/>
+      <param name="datePattern" value="'.'yyyy-MM-dd"/>
+                <!-- Layout -->
+      <layout class="org.apache.log4j.PatternLayout">
+			<param name="conversionPattern" value="%d %p [%X{com.venere.xhi.ttid}] [%c] - %m%n"/>
+		</layout>
+   </appender> 
+   
+   
+<!-- Asynchronous wrapper for MAIN appender -->
+   <appender name="ASYNC_STDOUT" class="org.apache.log4j.AsyncAppender">
+      <param name="bufferSize" value="1024"/>
+      <appender-ref ref="STDOUT"/>
+   </appender>
+  
+
+   <appender name="ASYNC_EXTRAS" class="org.apache.log4j.AsyncAppender">
+      <param name="bufferSize" value="1024"/>
+      <appender-ref ref="EXTRAS"/>
+   </appender>
+   
+ 
+        <!-- ======= -->
+        <!-- LOGGERS -->
+        <!-- ======= -->
+        
+     <!-- To reduce Spring verbosity -->
+   <logger name="org.springframework" additivity="false">
+      <level value="INFO"/>
+      <appender-ref ref="ASYNC_EXTRAS"/>
+   </logger>
+        
+   <logger name="com.venere.ace" additivity="false">
+      <level value="DEBUG"/>
+      <appender-ref ref="ASYNC_STDOUT"/>
+   </logger>
+   
+   
+         <!-- To log everything else -->
+	<root>
+		<priority value="INFO"/>
+		<appender-ref ref="STDOUT"/>
+      <appender-ref ref="EXTRAS"/>
+	</root>
+
+</log4j:configuration>

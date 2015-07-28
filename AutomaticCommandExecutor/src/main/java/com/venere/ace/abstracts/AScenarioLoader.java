@@ -1,0 +1,86 @@
+/*                   Copyright (c) 2007 Venere Net S.p.A.
+ *                             All Rights Reserved
+ *
+ * This software is the confidential and proprietary information of
+ * Venere Net S.p.A. ("Confidential  Information"). You  shall not disclose
+ * such  Confidential Information and shall use it only in accordance with
+ * the terms  of the license agreement you entered into with Venere Net S.p.A.
+ *
+ * VENERE NET S.P.A. MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY
+ * OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+ * OR NON-INFRINGEMENT. VENERE NET S.P.A. SHALL NOT BE LIABLE FOR ANY DAMAGES
+ * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS
+ * SOFTWARE OR ITS DERIVATIVES.
+ */
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package com.venere.ace.abstracts;
+
+import com.venere.ace.dao.ScenarioHandler;
+import com.venere.ace.exception.ELoaderIO;
+import com.venere.ace.idtos.IConfigurationDTO;
+import com.venere.ace.interfaces.ICommandExecutor;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Properties;
+import java.util.Set;
+
+/**
+ *
+ * @author quatrini
+ */
+public abstract class AScenarioLoader extends ALoader{
+
+   protected ScenarioHandler        oScenarioTaskHandler;
+   protected String                 sNameContext;
+   protected String                 sCurrentPropertiesFile;
+   protected Map                    oTestInjected;
+   protected Map                    oPropertiesInjected;
+
+
+   public ScenarioHandler getScenarioHandler() {
+      return oScenarioTaskHandler;
+   }
+
+   public void setScenarioHandler(ScenarioHandler oCurrentMetaplan) {
+      this.oScenarioTaskHandler = oCurrentMetaplan;
+   }
+   
+
+   @Override
+   public List<ICommandExecutor> load(IConfigurationDTO oConfigurationDTO) throws ELoaderIO {
+
+      oCurrentProperties   = oConfigurationDTO.getMainProps();
+      oTestInjected        = (Map) oConfigurationDTO.getConfigurationAdds().get("test");
+      oPropertiesInjected  = (Map) oConfigurationDTO.getConfigurationAdds().get("properties");
+
+      return super.load(oConfigurationDTO);
+   }
+
+
+   protected Properties mergPropertiesFile(List<Properties>  oListProps){
+      Properties oCurrentPropsCopy = new Properties();
+      if(oListProps != null && oListProps.size()>1){
+         oCurrentPropsCopy = (Properties)  (oListProps.remove(0)).clone();
+         for (Iterator<Properties> oIt = oListProps.iterator(); oIt.hasNext();) {
+            Properties oCurrentProps = oIt.next();
+            if(oCurrentProps != null ){
+               Set oEntryProps = oCurrentProps.entrySet();
+               for (Iterator oIt2 = oEntryProps.iterator(); oIt2.hasNext();) {
+                  Entry oEntry = (Entry) oIt2.next();
+                  oCurrentPropsCopy.setProperty((String) oEntry.getKey(), (String) oEntry.getValue());
+               }
+            }
+         }
+      }
+      return oCurrentPropsCopy;
+   }
+
+
+}

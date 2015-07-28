@@ -1,0 +1,263 @@
+/*                   Copyright (c) 2007 Venere Net S.p.A.
+ *                             All Rights Reserved
+ *
+ * This software is the confidential and proprietary information of
+ * Venere Net S.p.A. ("Confidential  Information"). You  shall not disclose
+ * such  Confidential Information and shall use it only in accordance with
+ * the terms  of the license agreement you entered into with Venere Net S.p.A.
+ *
+ * VENERE NET S.P.A. MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY
+ * OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+ * OR NON-INFRINGEMENT. VENERE NET S.P.A. SHALL NOT BE LIABLE FOR ANY DAMAGES
+ * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS
+ * SOFTWARE OR ITS DERIVATIVES.
+ */
+package com.venere.ace.abstracts;
+
+import com.venere.ace.dtos.ATaskResultDTO;
+import com.venere.ace.exception.EExecutorException;
+import com.venere.ace.exception.ELoaderIO;
+import com.venere.ace.exception.EManagerException;
+import com.venere.ace.idtos.IConfigurationDTO;
+import com.venere.ace.interfaces.ICommandExecutor;
+import com.venere.ace.interfaces.ICommandLoader;
+import com.venere.ace.interfaces.ICommandResult;
+import com.venere.ace.utility.EnumTestPosition;
+import com.venere.ace.utility.IEnum;
+import com.venere.utils.dto.DiagnosticDTO;
+import com.venere.utils.dto.RetrieveDataDTO;
+import com.venere.utils.dto.UtilityRestoreDTO;
+import com.venere.utils.test.bl.TestManager;
+import java.util.*;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+/**
+ *
+ * @author quatrini
+ */
+public class AManager {
+
+   protected Log oLogger;
+   protected ICommandLoader oLoader;
+   protected String sClassName;
+   protected TestManager oTestManager;
+   protected List<ICommandExecutor> oActionsExecuted;
+   private List<ICommandResult> oResultList;
+   private boolean isStopped;
+
+   public AManager(String sClassName) {
+      this.sClassName = sClassName;
+      oActionsExecuted = new ArrayList<>();
+      oLogger = LogFactory.getLog(sClassName);
+   }
+
+   public TestManager getTestManager() {
+      return oTestManager;
+   }
+
+   public void setTestManager(TestManager oT) {
+      this.oTestManager = oT;
+   }
+
+   public ICommandLoader getLoader() {
+      return oLoader;
+   }
+
+   public void setLoader(ICommandLoader oLoader) {
+      this.oLoader = oLoader;
+   }
+
+   public List<ICommandExecutor> getActionsExecuted() {
+      return oActionsExecuted;
+   }
+
+   public void setActionsExecuted(List<ICommandExecutor> oActionsExecuted) {
+      this.oActionsExecuted = oActionsExecuted;
+   }
+
+   public List<ICommandResult> manager(IConfigurationDTO oConfigurationDTO) throws EManagerException {
+      oResultList = new ArrayList<>();
+      ICommandExecutor oCommandExecutor;
+      List<ICommandExecutor> oListCommands = null;
+      try {
+         oListCommands = oLoader.load(oConfigurationDTO);
+      } catch (ELoaderIO ex) {
+         String sMessage = "Command loading file exception on " + oConfigurationDTO.getPathFileToLoad();
+         oLogger.error(sMessage);
+         throw new EManagerException(sMessage, ex);
+      }
+      ICommandResult oPostCheckResultDTO;
+      ICommandResult oPreCheckResultDTO;
+      ICommandResult oPostConditionResultDTO;
+      ICommandResult oPreConditionResultDTO;
+      ICommandResult oSingleResultDTO;
+      isStopped = false;
+      String sMessageCauseFailure = "GENERIC ERROR MUST BE OVERWRITTEN BY RIGHT FAULT";
+      Iterator<ICommandExecutor> oIt = oListCommands.iterator();
+      while (oIt.hasNext() && !isStopped) {
+         boolean isLastResultCorrect = true;
+         oCommandExecutor = oIt.next();
+         if (oCommandExecutor.evaluateCondition()) {
+            try {
+               sMessageCauseFailure = "Injection Pre Action Test Failure ";
+               oPreCheckResultDTO = doInjectedTask(EnumTestPosition.PRE, oCommandExecutor);
+               isLastResultCorrect &= analizeResult(oPreCheckResultDTO, oConfigurationDTO, oCommandExecutor);
+
+               if (isLastResultCorrect) {
+                  sMessageCauseFailure = "Pre Condition Action Failure ";
+                  oPreConditionResultDTO = oCommandExecutor.checkPreCondition();
+                  isLastResultCorrect &= analizeResult(oPreConditionResultDTO, oConfigurationDTO, oCommandExecutor);
+               }
+
+               if (isLastResultCorrect) {
+                  sMessageCauseFailure = "Action Task Failure ";
+                  oSingleResultDTO = oCommandExecutor.doTask();
+                  if (oSingleResultDTO != null && oSingleResultDTO.isCorrect() && oSingleResultDTO instanceof RetrieveDataDTO) {
+                     System.setProperty(((RetrieveDataDTO) oSingleResultDTO).getPropName(), ((RetrieveDataDTO) oSingleResultDTO).getPropValue());
+                  }
+                  oActionsExecuted.add(oCommandExecutor);
+                  isLastResultCorrect &= analizeResult(oSingleResultDTO, oConfigurationDTO, oCommandExecutor);
+               }
+
+               if (isLastResultCorrect) {
+                  sMessageCauseFailure = "Post Condition Action Failure ";
+                  oPostConditionResultDTO = oCommandExecutor.checkPostCondition();
+                  isLastResultCorrect &= analizeResult(oPostConditionResultDTO, oConfigurationDTO, oCommandExecutor);
+               }
+
+               if (isLastResultCorrect) {
+                  sMessageCauseFailure = "Injection Post Action Test Failure ";
+                  oPostCheckResultDTO = doInjectedTask(EnumTestPosition.POST, oCommandExecutor);
+                  isLastResultCorrect &= analizeResult(oPostCheckResultDTO, oConfigurationDTO, oCommandExecutor);
+               }
+
+               if (!isLastResultCorrect && !isStopped) {
+                  ICommandResult oTerminateResult = oCommandExecutor.terminate();
+                  if (oTerminateResult.isCorrect()) {
+                     oResultList.get(oResultList.size() - 1).setIsStopped(true);
+                  } else {
+                     oResultList.add(oTerminateResult);
+                  }
+                  isStopped = true;
+               }
+            } catch (EExecutorException ex) { //in questo caso devo generare un risultato 
+               ATaskResultDTO oResulTask = new ATaskResultDTO("ManagerExceptionTaskResult");
+               oResulTask.setIsCorrect(false);
+               oResulTask.setIsStopped(false);
+               oResulTask.setMessage(ex.getMessage());
+               oResultList.add(oResulTask);
+               if (!isStopped) {
+                  try {
+                     oCommandExecutor.terminate();
+                     isStopped = true;
+                     oResulTask.setIsStopped(isStopped);
+                  } catch (EExecutorException ex1) {
+                     oLogger.error(sMessageCauseFailure + oCommandExecutor.toString());
+                     throw new EManagerException(sMessageCauseFailure, ex.getCause());
+                  }
+               }
+            } catch (Exception ex) {
+               oLogger.error(sMessageCauseFailure + oCommandExecutor.toString());
+               throw new EManagerException(sMessageCauseFailure, ex.getCause());
+            }
+         }
+      }
+      return oResultList;
+   }
+
+   /**
+    * Perform check actions related to current Executed Action
+    *
+    * @param oTestPosition hold when check must be performed , pre or post
+    * @param oCommandExecutor last action executed
+    * @return ICommandResult hold information about checks result
+    * @throws EManagerCommand
+    */
+   private ICommandResult doInjectedTask(IEnum oTestPosition, ICommandExecutor oCommandExecutor) throws EManagerException {
+
+      ICommandResult oDefResult = null;
+      try {
+         List<ICommandResult> oInjectedResultList = oTestManager.selectDoTask(oTestPosition, oCommandExecutor.getTaskDescription());
+
+         for (Iterator<ICommandResult> it = oInjectedResultList.iterator(); it.hasNext();) {
+            ICommandResult oResult = it.next();
+            oDefResult = oResult;
+            if (!oResult.isCorrect()) {
+               break;
+            }
+         }
+
+      } catch (EExecutorException ex) {
+         try {
+            oCommandExecutor.terminate();
+         } catch (EExecutorException ex1) {
+            String sMessage = "Abort Command Action Failure ";
+            oLogger.error(sMessage + oCommandExecutor.toString());
+            throw new EManagerException(sMessage, ex1);
+         }
+         String sMessage = "Test Action Failure " + ex.getMessage();
+         oLogger.error(sMessage + oCommandExecutor.toString());
+         throw new EManagerException(sMessage, ex);
+
+      }
+
+      return oDefResult;
+   }
+
+   /**
+    * This Method analyse result CommandExecutor and try to recover in case of
+    * error
+    *
+    * @param oSingleResultDTO hold result to analyse
+    * @param oConfigurationDTO this information is used for recovering error
+    * @param oCommandExecutor last command executed
+    *
+    * @return boolean that hold information about analysis and recovering
+    */
+   private boolean analizeResult(ICommandResult oSingleResultDTO, IConfigurationDTO oConfigurationDTO, ICommandExecutor oCommandExecutor) {
+      boolean boIsCorrect = true;
+      if (oSingleResultDTO != null) {
+
+         if (oConfigurationDTO.getConfigurationAdds() != null) {
+            boolean boIsOptional = oConfigurationDTO.getConfigurationAdds().get("optional") == null ? false : (boolean) oConfigurationDTO.getConfigurationAdds().get("optional");
+
+            if (!oSingleResultDTO.isCorrect() && boIsOptional) {
+               oSingleResultDTO.setMessage("Error skipped for optional task");
+               oLogger.warn("Error skipped for optional task");
+               oSingleResultDTO.setIsCorrect(true);
+               oSingleResultDTO.setIsStopped(false);
+               oResultList.add(oSingleResultDTO);
+               return true;
+            }
+         }
+
+         DiagnosticDTO oDiagnostic = oSingleResultDTO.getDiagnostic();
+         if (oDiagnostic != null && oDiagnostic.getDiagnosis() != null) {
+            oSingleResultDTO.setMessage(oDiagnostic.getDiagnosis());
+            if (oDiagnostic.getRecover() != null) {
+               try {
+                  UtilityRestoreDTO oUtilityRestore = new UtilityRestoreDTO();
+                  oUtilityRestore.setAllProperties(oConfigurationDTO.getMainProps());
+                  oUtilityRestore.setExecutedActions(oActionsExecuted);
+                  ICommandResult oRestoreResult = oDiagnostic.getRecover().restore(oCommandExecutor.getHandler(), oUtilityRestore);
+                  if (oRestoreResult != null && oRestoreResult.isCorrect()) {
+                     oSingleResultDTO = oRestoreResult;
+                     oLogger.info(" Restore executed successfully");
+                  } else if (oRestoreResult != null && !oRestoreResult.isCorrect()) {
+                     oLogger.info(" Restore executed without success ");
+                  }
+
+               } catch (Exception e) {
+                  oLogger.warn(" Restore Failed: " + e.toString());
+               }
+            }
+         }
+         oResultList.add(oSingleResultDTO);
+         boIsCorrect = oSingleResultDTO.isCorrect();
+         isStopped |= oSingleResultDTO.isStopped();
+      }
+      return boIsCorrect;
+   }
+}

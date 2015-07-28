@@ -1,0 +1,133 @@
+/*                   Copyright (c) 2007 Venere Net S.p.A.
+ *                             All Rights Reserved
+ *
+ * This software is the confidential and proprietary information of
+ * Venere Net S.p.A. ("Confidential  Information"). You  shall not disclose
+ * such  Confidential Information and shall use it only in accordance with
+ * the terms  of the license agreement you entered into with Venere Net S.p.A.
+ *
+ * VENERE NET S.P.A. MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY
+ * OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+ * OR NON-INFRINGEMENT. VENERE NET S.P.A. SHALL NOT BE LIABLE FOR ANY DAMAGES
+ * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS
+ * SOFTWARE OR ITS DERIVATIVES.
+ */
+package com.venere.utils.test.bl;
+
+import com.venere.ace.dtos.ATaskResultDTO;
+import com.venere.ace.exception.EHandlerException;
+import com.venere.ace.idtos.ITestRequestDTO;
+import com.venere.ace.interfaces.ICommandResult;
+import com.venere.ace.utility.FolderManager;
+import com.venere.ace.utility.ScreenUtil;
+import java.io.File;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.openqa.selenium.JavascriptExecutor;
+
+/**
+ *
+ * @author v-aquadraccia
+ */
+public class CheckJsBL extends AClassTestBL {
+    
+    private static final Log oLogger = LogFactory.getLog(CheckJsBL.class);
+    
+    private File jsActionDir = null;
+    
+    public CheckJsBL() {
+        super("CheckJsBL");
+        this.jsActionDir = getJsActionDirectory();
+    }
+    
+    public ICommandResult executeScript(ITestRequestDTO oTest) throws EHandlerException {
+        
+        boResultTest = false;
+        
+        if (jsActionDir != null && jsActionDir.isDirectory()) {
+            
+            List oListElement = oTest.getInputDataList();
+            
+            if (oListElement != null && oListElement.size() == 1) {
+                
+                String jsFileName = (String) oListElement.get(0);
+                
+                File jsFile = new File(jsActionDir, jsFileName);
+                
+                if (jsFile.isFile()) {
+                    
+                    try {
+                        
+                        JavascriptExecutor jsExecutor = (JavascriptExecutor) oBrowser;
+                        
+                        String jsFileContent = CheckJsBL.readFileContent(jsFile.getAbsolutePath(), Charset.defaultCharset());
+                        
+                        Object execResult = jsExecutor.executeScript(jsFileContent);
+                        
+                        if (execResult instanceof Boolean) {
+                            Boolean boolResult = (Boolean) execResult;                            
+                            boResultTest = boolResult.booleanValue();
+                            sMessageResult = "Test executed";
+                        }
+                        
+                    } catch (IOException ex) {
+                        Logger.getLogger(CheckJsBL.class.getName()).log(Level.SEVERE, null, ex);
+                        sMessageResult = ex.getMessage();
+                        throw new EHandlerException(EHandlerException.HandlerErrorCode.ACTION_TASK, ex.getMessage(), ex);
+                    }
+                    
+                } else {
+                    String message = "Javascript file not found";
+                    sMessageResult = message;
+                    throw new EHandlerException(EHandlerException.HandlerErrorCode.ACTION_TASK, message);
+                }
+                
+            } else {
+                String message = "Javascript file path not valid";
+                sMessageResult = message;
+                throw new EHandlerException(EHandlerException.HandlerErrorCode.ACTION_TASK, message);
+            }
+            
+        } else {
+            String message = "Javascript action folder path not valid";
+            sMessageResult = message;
+            throw new EHandlerException(EHandlerException.HandlerErrorCode.ACTION_TASK, message);
+        }
+        
+        return populateResult(oTest);
+    }
+    
+    protected static String readFileContent(String path, Charset encoding) throws IOException {
+        byte[] encoded = Files.readAllBytes(Paths.get(path));
+        return encoding.decode(ByteBuffer.wrap(encoded)).toString();
+    }
+       
+    private File getJsActionDirectory() {
+        
+        File jsActionDir = null;
+        
+        try {
+            
+            File jarFilePath = new File(CheckJsBL.class.getProtectionDomain().getCodeSource().getLocation().getPath());
+            
+            File rootFolder = jarFilePath.getParentFile();
+            
+            jsActionDir = new File(rootFolder, FolderManager.JsActionFolder);
+            
+        } catch (Exception e) {
+            oLogger.error(e.getMessage(), e);
+        }
+        
+        return jsActionDir;
+    }
+    
+}

@@ -1,0 +1,424 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML><HEAD>
+
+
+
+<META content="IE=EmulateIE7" http-equiv="X-UA-Compatible"/>
+<TITLE>Rome Hotels, Rome Hotel reservations | Venere.com</TITLE>
+<META content="Rome hotels, apartments and bed and breakfasts online on Venere.com. Read hotel reviews and make hotel reservations. No advance payment." name="Description"/>
+<META content="rome hotels, hotels in rome, rome italy hotels, hotels rome, rome accommodation" name="Keywords"/>
+<META content="en" http-equiv="Content-Language"/>
+<META content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+<META content="NOODP, NOYDIR" name="robots"/>
+
+<SCRIPT type="text/javascript">
+(function(){
+var c=document.cookie,i=c.indexOf('_abs='),j=c.indexOf(';',i+1?i:0)
+v_abs=i+1?c.substring(i+5,j+1?j:c.length):'L'
+v_abp='N'
+v_abu=[,,1,,,,1]
+})()
+</SCRIPT>
+
+<LINK href="http://www.venere.com/common/styles/wwwroot/finder/mvt/bpr_BC/finder_allcss_v.1.2.13.css" type="text/css" rel="stylesheet"/>
+<SCRIPT src="http://www.venere.com/common/js/finder/finder_alljs_v.1.2.13.js" type="text/javascript"/>
+
+<SCRIPT src="http://www.venere.com/common/js/searchbox/searcher_searchbox_en_row.js?v=1.2.2.2" type="text/javascript"/>
+
+<SCRIPT type="text/javascript" charset="UTF-8" src="http://maps.gstatic.com/cat_js/intl/en_us/mapfiles/api-3/5/6/%7Bcommon,util%7D.js"/></HEAD><BODY>
+<!-- env: qa2 -->
+<TABLE width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="000000" class="header">
+<TBODY><TR bgcolor="yellow">
+<TD align="center"><B/></TD>
+<TD align="center" colspan="2"><B><FONT color="black">QA2 [DEV AREA]</FONT></B></TD>
+<TD align="center">?</TD>
+</TR>
+<TR bgcolor="yellow">
+<TD align="center">
+<FONT size="0" color="black">Working DB: <B>OSWTEST</B></FONT>
+</TD>
+<TD align="center">
+<FONT size="0" color="black">PD: <B>_qa2.mt__U6628D20110607T104734</B></FONT>
+</TD>
+<TD align="center">
+<FONT size="0" color="black">ABS: D<B>OOOOOC</B></FONT>
+</TD>
+<TD align="center">
+<FONT size="0" color="black">WEB ID: <B>151.8.106.201-1307436457-973960</B></FONT>
+</TD>
+</TR>
+<TR bgcolor="Silver">
+<TD align="center">
+<FONT size="0" color="black">ServerName: <B>qa2.mt.venere.com</B></FONT>
+</TD>
+<TD align="center" colspan="2">
+?
+</TD>
+<TD align="center">
+<FONT size="0" color="black">HttpXForwardedHost: <B>src.venere.com</B></FONT>
+</TD>
+</TR>
+</TBODY></TABLE>
+<DIV id="themewrapper">
+<DIV id="header">
+<A href="http://www.venere.com/">
+<IMG alt="Book hotels, B&amp;Bs and apartments" src="/img/logo/en_logo_venere_tag.png"/>
+</A>
+<UL id="header_menu">
+<LI id="prenotazioni"><A href="http://www.venere.com/user/?lg=en">Your Reservations</A></LI>
+</UL>
+
+<DIV id="book-by-phone"><P>Call us at<SPAN> 02 91483082</SPAN></P></DIV>
+<UL class="CurrMenu CurrMenum" id="currency"><LI><SPAN class="CurrMenu1" id="CurrSel">Currency: <STRONG>
+EUR</STRONG> <SMALL> ?</SMALL> </SPAN><UL class="CurrMenum"><LI class="CurrMenuSel CurrMenuEvid" id="EUR"> <SMALL> EUR </SMALL><P>Euro (?)</P> </LI><LI class="CurrMenuEvid" id="GBP"> <SMALL> GBP </SMALL><P>British Pound (?)</P> </LI><LI class="CurrMenuEvid" id="USD"> <SMALL> USD </SMALL><P>US Dollar ($)</P> </LI><LI class="" id="AUD"> <SMALL> AUD </SMALL><P>Australian Dollar </P> </LI><LI class="" id="BRL"> <SMALL> BRL </SMALL><P>Brazilian Real </P> </LI><LI class="" id="CAD"> <SMALL> CAD </SMALL><P>Canadian Dollar </P> </LI><LI class="" id="CHF"> <SMALL> CHF </SMALL><P>Swiss Franc </P> </LI><LI class="" id="CNY"> <SMALL> CNY </SMALL><P>Chinese Yuan Renminbi </P> </LI><LI class="" id="JPY"> <SMALL> JPY </SMALL><P>Japanese Yen </P> </LI><LI class="" id="NOK"> <SMALL> NOK </SMALL><P>Norwegian Kroner </P> </LI><LI class="" id="RUB"> <SMALL> RUB </SMALL><P>Russian Rouble </P> </LI><LI class="" id="SEK"> <SMALL> SEK </SMALL><P>Swedish Krona </P> </LI></UL></LI></UL>
+<UL class="LangMenu LangMenum">
+<LI id="lbli-en"><A href="#" class="LangMenu1"><IMG alt="" src="http://www.venere.com/img/flag/en_flag.gif"/>English<SMALL> ?</SMALL><!--[if gt IE 6]--></A><!--[endif]--><!--[if lte IE 6]><table><tr><td><![endif]-->
+<UL class="LangMenum">
+<LI id="lbli-it"> <A href="http://www.venere.com/it/italia/roma/"> <IMG alt="" src="http://www.venere.com/img/flag/it_flag.gif"/>Italiano</A> </LI>
+<LI id="lbli-de"> <A href="http://www.venere.com/de/italien/rom/"> <IMG alt="" src="http://www.venere.com/img/flag/de_flag.gif"/>Deutsch</A> </LI>
+<LI id="lbli-es"> <A href="http://www.venere.com/es/italia/roma/"> <IMG alt="" src="http://www.venere.com/img/flag/es_flag.gif"/>Espa?ol</A> </LI>
+<LI id="lbli-fr"> <A href="http://www.venere.com/fr/italie/rome/"> <IMG alt="" src="http://www.venere.com/img/flag/fr_flag.gif"/>Fran?ais</A> </LI>
+<LI id="lbli-nl"> <A href="http://www.venere.com/nl/italie/rome/"> <IMG alt="" src="http://www.venere.com/img/flag/nl_flag.gif"/>Nederlands</A> </LI>
+<LI id="lbli-ja"> <A href="http://www.venere.com/ja/italy/rome/"> <IMG alt="" src="http://www.venere.com/img/flag/ja_flag.gif"/>???</A> </LI>
+<LI id="lbli-zh"> <A href="http://www.venere.com/zh/italy/rome/"> <IMG alt="" src="http://www.venere.com/img/flag/zh_flag.gif"/>??</A> </LI>
+</UL>
+</LI> <!--[if lte IE 6]></td></tr></table></a><![endif]-->
+</UL>
+<UL id="breadcrumbs">
+<LI><A href="http://www.venere.com/">hotels</A>
+?&gt;</LI>
+<LI><A href="http://www.venere.com/hotels/italy/">italy hotels</A>
+?&gt;</LI>
+<LI><STRONG> rome hotels</STRONG></LI>
+<LI class="c-gray">?&gt;?hotel info</LI>
+<LI class="c-gray">?&gt;?reservation</LI>
+</UL>
+</DIV>                           <H1>Aurelio and Monteverde Hotels, Rome </H1>
+
+<DIV id="searchbox"> 
+<FORM onsubmit="return false;" action="" name="vSearch" id="vSearch">
+<INPUT type="hidden" value="" name="lg"/>
+<DIV id="searchboxfrom">from</DIV>
+<INPUT type="text" autocomplete="off" value="yyyy/mm/dd" tabindex="1" id="checkin" name="checkin" class="hasDatepicker"/>
+<DIV id="searchboxto">to</DIV>
+<INPUT type="text" tabindex="2" value="yyyy/mm/dd" autocomplete="off" id="checkout" name="checkout" class="hasDatepicker"/>
+<SELECT tabindex="3" name="pval" id="pval">
+<OPTION value="1">1 guest</OPTION>
+<OPTION selected="selected" value="2">2  guests</OPTION>
+<OPTION value="3">3  guests</OPTION>
+<OPTION value="4">4  guests</OPTION>
+<OPTION value="5">5  guests</OPTION>
+<OPTION value="6">6  guests</OPTION>
+<OPTION value="7">7  guests</OPTION>
+<OPTION value="8">8  guests</OPTION>
+<OPTION value="9">9  guests</OPTION>
+<OPTION value="10">10  guests</OPTION>
+</SELECT>
+<SPAN id="searchboxin">in</SPAN>
+<SELECT tabindex="4" name="rval" id="rval">
+<OPTION selected="selected" value="1">1 room</OPTION>
+<OPTION value="2">2  rooms</OPTION>
+<OPTION value="3">3  rooms</OPTION>
+<OPTION value="4">4  rooms</OPTION>
+<OPTION value="5">5  rooms</OPTION>
+<OPTION value="6">6  rooms</OPTION>
+<OPTION value="7">7  rooms</OPTION>
+<OPTION value="8">8  rooms</OPTION>
+<OPTION value="9">9  rooms</OPTION>
+<OPTION value="10">10  rooms</OPTION>
+</SELECT>
+<INPUT type="submit" border="0" id="find" tabindex="6" value="Search"/>
+</FORM>
+</DIV>
+<DIV id="boxsortfilter">
+<DIV id="paging_top">
+<SPAN class="pagingdisabledtop" id="previous_top"> ?</SPAN>
+<SPAN id="current_top" class="pagecurrentop">page 1</SPAN>
+<SPAN class="next" id="next_top">?</SPAN>
+</DIV>
+<UL>
+<LI class="showmap">
+<SPAN> View Map </SPAN>
+</LI>
+<LI name="zone" id="zone">
+<SPAN class="menu_class"><P>Aurelio and Monte...</P><SMALL>?</SMALL></SPAN>
+<DIV class="the_menu_container" style="display: none;">
+<UL class="the_menu">
+<LI class="all" id="all_areas">All city areas</LI>
+<LI id="z26944" class="selected">Aurelio and Monteverde</LI>
+<LI id="z26945">Aventino and Testaccio</LI>
+<LI id="z43181">Camilluccia</LI>
+<LI id="z43182">Cassia</LI>
+<LI id="z43184">Colosseum</LI>
+<LI id="z43185">Esquilino - Termini</LI>
+<LI id="z43903">EUR</LI>
+<LI id="z26947">Flaminio Parioli</LI>
+<LI id="z43187">Marsala - Termini</LI>
+<LI id="z43188">Navona</LI>
+<LI id="z43189">Pantheon</LI>
+<LI id="z43190">Porta Portese</LI>
+<LI id="z26948">Prati</LI>
+<LI id="z43192">Repubblica - Termini</LI>
+<LI id="z43193">San Giovanni</LI>
+<LI id="z43194">San Lorenzo</LI>
+<LI id="z43191">Spanish Steps</LI>
+<LI id="z26951">Trastevere</LI>
+<LI id="z43195">Trevi Fountain</LI>
+<LI id="z26949">Trieste Salario Nomentano</LI>
+<LI id="z43183">University Campus (Citt? Universitaria)</LI>
+<LI id="z26952">Vatican</LI>
+<LI id="z43196">Via Veneto</LI>
+</UL>
+</DIV>
+</LI>
+<LI name="pricerange" id="pricerange">
+<SPAN class="menu_class"><P>Your budget</P><SMALL>?</SMALL></SPAN>
+<DIV class="the_menu_container">
+<SPAN id="pricerangelast">Price per room per night</SPAN>
+<UL class="the_menu">
+<LI id="r1" class="disabled"><P>???0???50</P></LI>
+<LI id="r2"><P>???50???75</P></LI>
+<LI id="r3"><P>???75???100</P></LI>
+<LI id="r4"><P>???100???150</P></LI>
+<LI id="r5" class=""><P>More than???150</P></LI>
+<LI class="selected" id="r6"><P>Any budget</P></LI>
+</UL>
+</DIV>
+</LI>
+<LI name="rate" id="rate">
+<SPAN class="menu_class"><P>Stars: All</P><SMALL>?</SMALL></SPAN>
+<DIV class="the_menu_container">
+<UL class="the_menu">
+<LI class="all selected" id="all_rate">Stars: All</LI>
+<LI id="c1">
+<P>1</P>
+<DIV class="stars_1"> <IMG src="http://www.venere.com/img/category/star_7l_filter.png" alt="1 star hotel"/></DIV>
+</LI>
+<LI id="c2" class="disabled">
+<P>2</P>
+<DIV class="stars_2"> <IMG src="http://www.venere.com/img/category/star_7l_filter_disabled.png" alt="2 star hotel"/></DIV>
+</LI>
+<LI id="c3">
+<P>3</P>
+<DIV class="stars_3"> <IMG src="http://www.venere.com/img/category/star_7l_filter.png" alt="3 star hotel"/></DIV>
+</LI>
+<LI id="c4">
+<P>4</P>
+<DIV class="stars_4"> <IMG src="http://www.venere.com/img/category/star_7l_filter.png" alt="4 star hotel"/></DIV>
+</LI>
+<LI id="c5" class="disabled">
+<P>5</P>
+<DIV class="stars_5"> <IMG src="http://www.venere.com/img/category/star_7l_filter_disabled.png" alt="5 star hotel"/></DIV>
+</LI>
+<LI class="disabled" id="c6">
+<P>6</P>
+<DIV class="stars_6"> <IMG src="http://www.venere.com/img/category/star_7l_filter_disabled.png" alt="6 star hotel"/></DIV>
+</LI>
+<LI class="disabled" id="c7">
+<P>7</P>
+<DIV class="stars_7"> <IMG src="http://www.venere.com/img/category/star_7l_filter_disabled.png" alt="7 star hotel"/></DIV>
+</LI>
+</UL>
+</DIV>
+</LI>
+<LI id="type">
+<SPAN class="menu_class"><P>Hotels</P><SMALL>?</SMALL></SPAN>
+<DIV class="the_menu_container" style="display: none;">
+<UL class="the_menu">
+<LI class="all" id="all">All Accommodation Types</LI>
+<LI id="C" class="selected">Hotels</LI>
+<LI id="T">Town House Suites</LI>
+<LI id="B">Bed and Breakfasts</LI>
+<LI id="X" class="disabled">Guest Houses</LI>
+<LI id="R">Serviced Apartments</LI>
+<LI id="A">Vacation Rentals</LI>
+<LI id="N" class="disabled">Other Accommodation</LI>
+</UL>
+</DIV>
+</LI> 
+</UL>
+</DIV>
+<DIV id="sorthotelnamebar">
+<DIV id="sortby">
+<P> Sort by </P>
+<DIV id="orderby">
+<SPAN class="menu_class">
+<P>Best Seller</P><SMALL>?</SMALL>
+</SPAN>
+<DIV class="the_menu_container">
+<UL class="the_menu">
+<LI class="selected" id="venere_ranking">Best Seller</LI>
+<LI class="" id="price">Price</LI>
+<LI class="" id="rating">Star Rating</LI>
+<LI class="" id="userRating">Guest Rating</LI>
+</UL>
+</DIV>
+</DIV>
+</DIV>
+<DIV id="matchinghotels"><P id="results"> 22 </P><H2>hotels</H2></DIV>
+<FORM id="searchbyname" action="">
+<SPAN class="clearsearchbyname_off" id="clearsearchbyname"> ? </SPAN>
+<INPUT type="text" value="Hotel Name, Chain, ..." name="" maxlength="80" id="hotelname"/>
+<INPUT type="button" value="Search" name="" id="name_filter"/>
+</FORM>
+</DIV>
+<DIV id="boxmain">
+<DIV id="loading" style="display: none;">
+<DIV>
+<UL>
+<LI><IMG alt="" src="/img/icone/srp_loader.gif"/></LI>
+<LI>Loading?</LI>
+</UL>
+</DIV>
+<SPAN/>
+</DIV>
+<DIV style="width: 980px; height: 0px; position: relative; visibility: hidden;" id="idm1"/>
+<DIV id="hotelslist"><DIV id="hotel2155" class="hotelstrip"><DIV class="hotelstripinfo"><A title="Hotel Marc'Aurelio" href="http://www.venere.com/hotels/rome/hotel-marc-aurelio/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"><IMG src="http://img.venere.com/img/hotel/5/5/1/2/2155/2155.jpg" alt="Hotel Marc'Aurelio"/></A><H3><A href="http://www.venere.com/hotels/rome/hotel-marc-aurelio/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank">Hotel Marc'Aurelio</A>Rome</H3><UL><LI><DIV class="stars_4"> <IMG src="http://www.venere.com/img/category/star_7l.gif" alt="4 star hotel"/></DIV></LI> <LI class="hotelstripzone">Aurelio and Monteverde</LI><LI class="hotelstripcc">02 91483943</LI></UL><P>Hotel Marc'Aurelio offers 4 star hotel accommodation in Rome, close to the Vatican City and Rome's city center, offering guests the unique opportunity to easily reach the main beauties of the Eternal City. Well linked by public transportation, this... <A href="http://www.venere.com/hotels/rome/hotel-marc-aurelio/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"> hotel details</A></P></DIV><DIV class="hotelstriprice"><DIV class="hotelprice">? <SPAN>380</SPAN></DIV><P>Total Price</P></DIV><UL class="hotelstripmenu"><LI><A href="http://www.venere.com/hotels/rome/hotel-marc-aurelio/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#pictures" target="_blank"> Photos </A></LI><LI><A href="http://www.venere.com/hotels/rome/hotel-marc-aurelio/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#location" target="_blank"> Location </A></LI><LI class="hotelstripmenu_ratingbox"><A href="http://www.venere.com/hotels/rome/hotel-marc-aurelio/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#reviews" target="_blank"> Hotel Reviews </A><DIV class="userating_7"> <SPAN> 7.4 </SPAN> </DIV> </LI><LI class="hotelstripmenu_buttonbox"><A href="http://www.venere.com/hotels/rome/hotel-marc-aurelio/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank" class="hotelstripmenubutton"> Book </A> </LI></UL></DIV><DIV id="hotel210933" class="hotelstrip"><DIV class="hotelstripinfo"><A title="Hotel Pinewood Rome" href="http://www.venere.com/hotels/rome/hotel-pinewood-rome/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"><IMG src="http://img.venere.com/img/hotel/3/3/9/0/210933/210933.jpg" alt="Hotel Pinewood Rome"/></A><H3><A href="http://www.venere.com/hotels/rome/hotel-pinewood-rome/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank">Hotel Pinewood Rome</A>Rome</H3><UL><LI><DIV class="stars_4"> <IMG src="http://www.venere.com/img/category/star_7l.gif" alt="4 star hotel"/></DIV></LI> <LI class="hotelstripzone">Aurelio and Monteverde</LI><LI class="hotelstripcc">02 91483945</LI></UL><P>Situated in Rome, a few subway stops away from the Vatican City, the Pinewood Rome hotel enjoys a panoramic position overlooking the Sacchetti pinewood. The property is strategically located at a walking distance from the Cornelia subway station and the... <A href="http://www.venere.com/hotels/rome/hotel-pinewood-rome/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"> hotel details</A></P></DIV><DIV class="hotelstriprice"><DIV class="pricediscount">? <SPAN>340</SPAN></DIV><DIV class="hotelpricediscount">? <SPAN>380</SPAN></DIV><P>Total Price</P></DIV><UL class="hotelstripmenu"><LI><A href="http://www.venere.com/hotels/rome/hotel-pinewood-rome/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#pictures" target="_blank"> Photos </A></LI><LI><A href="http://www.venere.com/hotels/rome/hotel-pinewood-rome/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#location" target="_blank"> Location </A></LI><LI class="hotelstripmenu_ratingbox"><A href="http://www.venere.com/hotels/rome/hotel-pinewood-rome/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#reviews" target="_blank"> Hotel Reviews </A><DIV class="userating_8"> <SPAN> 7.8 </SPAN> </DIV> </LI><LI class="hotelstripmenu_buttonbox"><A href="http://www.venere.com/hotels/rome/hotel-pinewood-rome/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank" class="hotelstripmenubutton"> Book </A> </LI></UL></DIV><DIV id="hotel2132" class="hotelstrip"><DIV class="hotelstripinfo"><A title="Hotel Aureliano" href="http://www.venere.com/hotels/rome/hotel-aureliano/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"><IMG src="http://img.venere.com/img/hotel/2/3/1/2/2132/2132.jpg" alt="Hotel Aureliano"/></A><H3><A href="http://www.venere.com/hotels/rome/hotel-aureliano/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank">Hotel Aureliano</A>Rome</H3><UL><LI><DIV class="stars_4"> <IMG src="http://www.venere.com/img/category/star_7l.gif" alt="4 star hotel"/></DIV></LI> <LI class="hotelstripzone">Aurelio and Monteverde</LI><LI class="hotelstripcc">02 91483930</LI></UL><P>Hotel Aureliano is located in a quiet residential area in Rome, not far from the city centre and close to the underground network. The property is housed in a beautiful five-storey art d?co building, featuring elegantly furnished interiors and a welcoming... <A href="http://www.venere.com/hotels/rome/hotel-aureliano/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"> hotel details</A></P></DIV><DIV class="hotelstriprice"><DIV class="hotelprice">? <SPAN>480</SPAN></DIV><P>Total Price</P></DIV><UL class="hotelstripmenu"><LI><A href="http://www.venere.com/hotels/rome/hotel-aureliano/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#pictures" target="_blank"> Photos </A></LI><LI><A href="http://www.venere.com/hotels/rome/hotel-aureliano/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#location" target="_blank"> Location </A></LI><LI class="hotelstripmenu_ratingbox"><A href="http://www.venere.com/hotels/rome/hotel-aureliano/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#reviews" target="_blank"> Hotel Reviews </A><DIV class="userating_8"> <SPAN> 7.9 </SPAN> </DIV> </LI><LI class="hotelstripmenu_buttonbox"><A href="http://www.venere.com/hotels/rome/hotel-aureliano/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank" class="hotelstripmenubutton"> Book </A> </LI></UL></DIV><DIV id="hotel23308" class="hotelstrip"><DIV class="hotelstripinfo"><A title="Hotel Aldobrandeschi" href="http://www.venere.com/hotels/rome/hotel-aldobrandeschi/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"><IMG src="http://img.venere.com/img/hotel/8/0/3/3/23308/23308.jpg" alt="Hotel Aldobrandeschi"/></A><H3><A href="http://www.venere.com/hotels/rome/hotel-aldobrandeschi/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank">Hotel Aldobrandeschi</A>Rome</H3><UL><LI><DIV class="stars_4"> <IMG src="http://www.venere.com/img/category/star_7l.gif" alt="4 star hotel"/></DIV></LI> <LI class="hotelstripzone">Aurelio and Monteverde</LI><LI class="hotelstripcc">02 91483916</LI></UL><P>The hotel Aldobrandeschi is a fefined hotel, conveniently located close to the city centre, between the airports of Fiumicino and Ciampino and very close to the highway exits, offering efficient and complete hotel services; bar, private parking area,... <A href="http://www.venere.com/hotels/rome/hotel-aldobrandeschi/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"> hotel details</A></P></DIV><DIV class="hotelstriprice"><DIV class="pricediscount">? <SPAN>356</SPAN></DIV><DIV class="hotelpricediscount">? <SPAN>396</SPAN></DIV><P>Total Price</P></DIV><UL class="hotelstripmenu"><LI><A href="http://www.venere.com/hotels/rome/hotel-aldobrandeschi/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#pictures" target="_blank"> Photos </A></LI><LI><A href="http://www.venere.com/hotels/rome/hotel-aldobrandeschi/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#location" target="_blank"> Location </A></LI><LI class="hotelstripmenu_ratingbox"><A href="http://www.venere.com/hotels/rome/hotel-aldobrandeschi/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#reviews" target="_blank"> Hotel Reviews </A><DIV class="userating_8"> <SPAN> 8.1 </SPAN> </DIV> </LI><LI class="hotelstripmenu_buttonbox"><A href="http://www.venere.com/hotels/rome/hotel-aldobrandeschi/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank" class="hotelstripmenubutton"> Book </A> </LI></UL></DIV><DIV id="hotel2028" class="hotelstrip"><DIV class="hotelstripinfo"><A title="Atahotel Villa Pamphili" href="http://www.venere.com/hotels/rome/atahotel-villa-pamphili/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"><IMG src="http://img.venere.com/img/hotel/8/2/0/2/2028/2028.jpg" alt="Atahotel Villa Pamphili"/></A><H3><A href="http://www.venere.com/hotels/rome/atahotel-villa-pamphili/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank">Atahotel Villa Pamphili</A>Rome</H3><UL><LI><DIV class="stars_4"> <IMG src="http://www.venere.com/img/category/star_7l.gif" alt="4 star hotel"/></DIV></LI> <LI class="hotelstripzone">Aurelio and Monteverde</LI><LI class="hotelstripcc">02 91483925</LI></UL><P>Situated in Rome, in a residential area facing the splendid Villa Doria Pamphili park, only 2.5 miles/4 km from the Vatican Museums, the Atahotel Villa Pamphili is the right solution for both business or leisure travellers alike. This completely... <A href="http://www.venere.com/hotels/rome/atahotel-villa-pamphili/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"> hotel details</A></P></DIV><DIV class="hotelstriprice"><DIV class="pricediscount">? <SPAN>404</SPAN></DIV><DIV class="hotelpricediscount">? <SPAN>472</SPAN></DIV><P>Total Price</P></DIV><UL class="hotelstripmenu"><LI><A href="http://www.venere.com/hotels/rome/atahotel-villa-pamphili/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#pictures" target="_blank"> Photos </A></LI><LI><A href="http://www.venere.com/hotels/rome/atahotel-villa-pamphili/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#location" target="_blank"> Location </A></LI><LI class="hotelstripmenu_ratingbox"><A href="http://www.venere.com/hotels/rome/atahotel-villa-pamphili/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#reviews" target="_blank"> Hotel Reviews </A><DIV class="userating_8"> <SPAN> 8.4 </SPAN> </DIV> </LI><LI class="hotelstripmenu_buttonbox"><DIV id="deal2028-4" class="deals_hotdeal"><P>Special Price</P></DIV><DIV class="deal_hover"><P>Look at the rooms on offer!
+</P></DIV><A href="http://www.venere.com/hotels/rome/atahotel-villa-pamphili/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank" class="hotelstripmenubutton"> Book </A> </LI></UL></DIV><DIV id="hotel1978" class="hotelstrip"><DIV class="hotelstripinfo"><A title="Hotel Crowne Plaza Rome St. Peter's" href="http://www.venere.com/crowne-plaza-hotels/rome/hotel-rome-st-peters/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"><IMG src="http://img.venere.com/img/hotel/8/7/9/1/1978/1978.jpg" alt="Hotel Crowne Plaza Rome St. Peter's"/></A><H3><A href="http://www.venere.com/crowne-plaza-hotels/rome/hotel-rome-st-peters/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank">Hotel Crowne Plaza Rome St. Peter's</A>Rome</H3><UL><LI><DIV class="stars_4"> <IMG src="http://www.venere.com/img/category/star_7l.gif" alt="4 star hotel"/></DIV></LI> <LI class="hotelstripzone">Aurelio and Monteverde</LI><LI class="hotelstripcc">02 91483928</LI></UL><P>The Crowne Plaza Rome-St. Peter's Hotel &amp; Spa is a deluxe property set in a beautiful residential area in the immediate vicinity of Villa Doria Pamphili, close to Vatican City and only 4 km from the city centre of Rome. The complex offers a high standard... <A href="http://www.venere.com/crowne-plaza-hotels/rome/hotel-rome-st-peters/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"> hotel details</A></P></DIV><DIV class="hotelstriprice"><DIV class="hotelprice">? <SPAN>520</SPAN></DIV><P>Total Price</P></DIV><UL class="hotelstripmenu"><LI><A href="http://www.venere.com/crowne-plaza-hotels/rome/hotel-rome-st-peters/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#pictures" target="_blank"> Photos </A></LI><LI><A href="http://www.venere.com/crowne-plaza-hotels/rome/hotel-rome-st-peters/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#location" target="_blank"> Location </A></LI><LI class="hotelstripmenu_ratingbox"><A href="http://www.venere.com/crowne-plaza-hotels/rome/hotel-rome-st-peters/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#reviews" target="_blank"> Hotel Reviews </A><DIV class="userating_9"> <SPAN> 8.7 </SPAN> </DIV> </LI><LI class="hotelstripmenu_buttonbox"><A href="http://www.venere.com/crowne-plaza-hotels/rome/hotel-rome-st-peters/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank" class="hotelstripmenubutton"> Book </A> </LI></UL></DIV><DIV id="hotel228322" class="hotelstrip"><DIV class="hotelstripinfo"><A title="Black Hotel" href="http://www.venere.com/hotels/rome/black-hotel/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"><IMG src="http://img.venere.com/img/hotel/2/2/3/8/228322/228322.jpg" alt="Black Hotel"/></A><H3><A href="http://www.venere.com/hotels/rome/black-hotel/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank">Black Hotel</A>Rome</H3><UL><LI><DIV class="stars_4"> <IMG src="http://www.venere.com/img/category/star_7l.gif" alt="4 star hotel"/></DIV></LI> <LI class="hotelstripzone">Aurelio and Monteverde</LI><LI class="hotelstripcc">02 91483941</LI></UL><P>The Black Hotel is a modern, fully air conditioned property, situated in Rome, near via Aurelia, 7 km from the Saint Peter Basilica and the Vatican Museums, in a peaceful and verdant area far from the chaos of Rome's city-centre. The newly open property... <A href="http://www.venere.com/hotels/rome/black-hotel/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"> hotel details</A></P></DIV><DIV class="hotelstriprice"><DIV class="hotelprice">? <SPAN>357</SPAN></DIV><P>Total Price</P></DIV><UL class="hotelstripmenu"><LI><A href="http://www.venere.com/hotels/rome/black-hotel/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#pictures" target="_blank"> Photos </A></LI><LI><A href="http://www.venere.com/hotels/rome/black-hotel/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#location" target="_blank"> Location </A></LI><LI class="hotelstripmenu_ratingbox"><A href="http://www.venere.com/hotels/rome/black-hotel/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#reviews" target="_blank"> Hotel Reviews </A><DIV class="userating_8"> <SPAN> 8 </SPAN> </DIV> </LI><LI class="hotelstripmenu_buttonbox"><DIV id="deal228322-4" class="deals_hotdeal"><P>Special Price</P></DIV><DIV class="deal_hover"><P>Look at the rooms on offer!
+</P></DIV><A href="http://www.venere.com/hotels/rome/black-hotel/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank" class="hotelstripmenubutton"> Book </A> </LI></UL></DIV><DIV id="hotel199636" class="hotelstrip"><DIV class="hotelstripinfo"><A title="Hotel Il Castelletto" href="http://www.venere.com/hotels/rome/hotel-il-castelletto/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"><IMG src="http://img.venere.com/img/hotel/6/3/6/9/199636/199636.jpg" alt="Hotel Il Castelletto"/></A><H3><A href="http://www.venere.com/hotels/rome/hotel-il-castelletto/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank">Hotel Il Castelletto</A>Rome</H3><UL><LI><DIV class="stars_1"> <IMG src="http://www.venere.com/img/category/star_7l.gif" alt="1 star hotel"/></DIV></LI> <LI class="hotelstripzone">Aurelio and Monteverde</LI><LI class="hotelstripcc">02 91483925</LI></UL><P>Located near the ancient Aurelia Antica road, just 3 km from the Vatican and the city center of Rome, Il Castelletto is a lovely hotel, featuring nice and comfortable accommodations. The property is housed in an early 20th century villa that recently... <A href="http://www.venere.com/hotels/rome/hotel-il-castelletto/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"> hotel details</A></P></DIV><DIV class="hotelstriprice"><DIV class="hotelprice">? <SPAN>208</SPAN></DIV><P>Total Price</P></DIV><UL class="hotelstripmenu"><LI><A href="http://www.venere.com/hotels/rome/hotel-il-castelletto/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#pictures" target="_blank"> Photos </A></LI><LI><A href="http://www.venere.com/hotels/rome/hotel-il-castelletto/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#location" target="_blank"> Location </A></LI><LI class="hotelstripmenu_ratingbox"><A href="http://www.venere.com/hotels/rome/hotel-il-castelletto/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#reviews" target="_blank"> Hotel Reviews </A><DIV class="userating_7"> <SPAN> 7 </SPAN> </DIV> </LI><LI class="hotelstripmenu_buttonbox"><A href="http://www.venere.com/hotels/rome/hotel-il-castelletto/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank" class="hotelstripmenubutton"> Book </A> </LI></UL></DIV><DIV id="hotel2196" class="hotelstrip"><DIV class="hotelstripinfo"><A title="Hotel Raganelli" href="http://www.venere.com/hotels/rome/hotel-raganelli/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"><IMG src="http://img.venere.com/img/hotel/6/9/1/2/2196/2196.jpg" alt="Hotel Raganelli"/></A><H3><A href="http://www.venere.com/hotels/rome/hotel-raganelli/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank">Hotel Raganelli</A>Rome</H3><UL><LI><DIV class="stars_4"> <IMG src="http://www.venere.com/img/category/star_7l.gif" alt="4 star hotel"/></DIV></LI> <LI class="hotelstripzone">Aurelio and Monteverde</LI><LI class="hotelstripcc">02 91483920</LI></UL><P>The Raganelli Hotel in Rome enjoys a convenient position close to Vatican City. This central 4 star Rome Italy hotel is well served by public transport and easy to reach by car thanks to its close proximity to the Grande Raccordo Anulare and easy access... <A href="http://www.venere.com/hotels/rome/hotel-raganelli/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"> hotel details</A></P></DIV><DIV class="hotelstriprice"><DIV class="hotelprice">? <SPAN>292</SPAN></DIV><P>Total Price</P></DIV><UL class="hotelstripmenu"><LI><A href="http://www.venere.com/hotels/rome/hotel-raganelli/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#pictures" target="_blank"> Photos </A></LI><LI><A href="http://www.venere.com/hotels/rome/hotel-raganelli/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#location" target="_blank"> Location </A></LI><LI class="hotelstripmenu_ratingbox"><A href="http://www.venere.com/hotels/rome/hotel-raganelli/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#reviews" target="_blank"> Hotel Reviews </A><DIV class="userating_7"> <SPAN> 6.8 </SPAN> </DIV> </LI><LI class="hotelstripmenu_buttonbox"><A href="http://www.venere.com/hotels/rome/hotel-raganelli/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank" class="hotelstripmenubutton"> Book </A> </LI></UL></DIV><DIV id="hotel2076" class="hotelstrip"><DIV class="hotelstripinfo"><A title="Hotel Consul" href="http://www.venere.com/hotels/rome/hotel-consul/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"><IMG src="http://img.venere.com/img/hotel/6/7/0/2/2076/2076.jpg" alt="Hotel Consul"/></A><H3><A href="http://www.venere.com/hotels/rome/hotel-consul/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank">Hotel Consul</A>Rome</H3><UL><LI><DIV class="stars_3"> <IMG src="http://www.venere.com/img/category/star_7l.gif" alt="3 star hotel"/></DIV></LI> <LI class="hotelstripzone">Aurelio and Monteverde</LI><LI class="hotelstripcc">02 91483918</LI></UL><P>Situated in the Aurelio-Vaticano neighborhood, the Consul hotel is easy to reach from the Fiumicino Leonardo da Vinci airport and it is well connected with St. Peter's, Piazza Navona, Piazza di Spagna and all of Rome's historic centre by a short bus &amp;... <A href="http://www.venere.com/hotels/rome/hotel-consul/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"> hotel details</A></P></DIV><DIV class="hotelstriprice"><DIV class="pricediscount">? <SPAN>292</SPAN></DIV><DIV class="hotelpricediscount">? <SPAN>360</SPAN></DIV><P>Total Price</P></DIV><UL class="hotelstripmenu"><LI><A href="http://www.venere.com/hotels/rome/hotel-consul/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#pictures" target="_blank"> Photos </A></LI><LI><A href="http://www.venere.com/hotels/rome/hotel-consul/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#location" target="_blank"> Location </A></LI><LI class="hotelstripmenu_ratingbox"><A href="http://www.venere.com/hotels/rome/hotel-consul/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#reviews" target="_blank"> Hotel Reviews </A><DIV class="userating_6"> <SPAN> 6.1 </SPAN> </DIV> </LI><LI class="hotelstripmenu_buttonbox"><A href="http://www.venere.com/hotels/rome/hotel-consul/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank" class="hotelstripmenubutton"> Book </A> </LI></UL></DIV><DIV id="hotel28389" class="hotelstrip"><DIV class="hotelstripinfo"><A title="Hotel Sisto V" href="http://www.venere.com/hotels/rome/hotel-sisto-v/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"><IMG src="http://img.venere.com/img/hotel/9/8/3/8/28389/28389.jpg" alt="Hotel Sisto V"/></A><H3><A href="http://www.venere.com/hotels/rome/hotel-sisto-v/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank">Hotel Sisto V</A>Rome</H3><UL><LI><DIV class="stars_3"> <IMG src="http://www.venere.com/img/category/star_7l.gif" alt="3 star hotel"/></DIV></LI> <LI class="hotelstripzone">Aurelio and Monteverde</LI><LI class="hotelstripcc">02 91483952</LI></UL><P>The Sisto V is a modern 3 star Rome hotel close to the Gemelli University Hospital, offering a welcoming atmosphere and an excellent location near the Policlinico Gemelli train station, allowing you to quickly and comfortably reach Rome historical centre... <A href="http://www.venere.com/hotels/rome/hotel-sisto-v/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"> hotel details</A></P></DIV><DIV class="hotelstriprice"><DIV class="pricediscount">? <SPAN>269</SPAN></DIV><DIV class="hotelpricediscount">? <SPAN>303</SPAN></DIV><P>Total Price</P></DIV><UL class="hotelstripmenu"><LI><A href="http://www.venere.com/hotels/rome/hotel-sisto-v/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#pictures" target="_blank"> Photos </A></LI><LI><A href="http://www.venere.com/hotels/rome/hotel-sisto-v/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#location" target="_blank"> Location </A></LI><LI class="hotelstripmenu_ratingbox"><A href="http://www.venere.com/hotels/rome/hotel-sisto-v/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#reviews" target="_blank"> Hotel Reviews </A><DIV class="userating_8"> <SPAN> 7.8 </SPAN> </DIV> </LI><LI class="hotelstripmenu_buttonbox"><A href="http://www.venere.com/hotels/rome/hotel-sisto-v/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank" class="hotelstripmenubutton"> Book </A> </LI></UL></DIV><DIV id="hotel28380" class="hotelstrip"><DIV class="hotelstripinfo"><A title="Hotel Giotto" href="http://www.venere.com/hotels/rome/hotel-giotto/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"><IMG src="http://img.venere.com/img/hotel/0/8/3/8/28380/28380.jpg" alt="Hotel Giotto"/></A><H3><A href="http://www.venere.com/hotels/rome/hotel-giotto/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank">Hotel Giotto</A>Rome</H3><UL><LI><DIV class="stars_3"> <IMG src="http://www.venere.com/img/category/star_7l.gif" alt="3 star hotel"/></DIV></LI> <LI class="hotelstripzone">Aurelio and Monteverde</LI><LI class="hotelstripcc">02 91483930</LI></UL><P>The recently completely renovated Giotto, a 3 star hotel in Rome, is located in a quiet residential area, just a few stops by underground from Rome historical centre and the Vatican. Also close to the Pineta Sacchetti park with its breathtaking view over... <A href="http://www.venere.com/hotels/rome/hotel-giotto/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"> hotel details</A></P></DIV><DIV class="hotelstriprice"><DIV class="hotelprice">? <SPAN>260</SPAN></DIV><P>Total Price</P></DIV><UL class="hotelstripmenu"><LI><A href="http://www.venere.com/hotels/rome/hotel-giotto/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#pictures" target="_blank"> Photos </A></LI><LI><A href="http://www.venere.com/hotels/rome/hotel-giotto/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#location" target="_blank"> Location </A></LI><LI class="hotelstripmenu_ratingbox"><A href="http://www.venere.com/hotels/rome/hotel-giotto/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#reviews" target="_blank"> Hotel Reviews </A><DIV class="userating_7"> <SPAN> 7 </SPAN> </DIV> </LI><LI class="hotelstripmenu_buttonbox"><DIV id="deal28380-7" class="deals_hotdeal"><P>Special Price</P></DIV><DIV class="deal_hover"><P>Look at the rooms on offer!
+</P></DIV><A href="http://www.venere.com/hotels/rome/hotel-giotto/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank" class="hotelstripmenubutton"> Book </A> </LI></UL></DIV><DIV id="hotel346594" class="hotelstrip"><DIV class="hotelstripinfo"><A title="ESH - Executive Style Hotel" href="http://www.venere.com/hotels/rome/esh-executive-style-hotel/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"><IMG src="http://img.venere.com/img/hotel/4/9/5/6/346594/346594.jpg" alt="ESH - Executive Style Hotel"/></A><H3><A href="http://www.venere.com/hotels/rome/esh-executive-style-hotel/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank">ESH - Executive Style Hotel</A>Rome</H3><UL><LI><DIV class="stars_4"> <IMG src="http://www.venere.com/img/category/star_7l.gif" alt="4 star hotel"/></DIV></LI> <LI class="hotelstripzone">Aurelio and Monteverde</LI><LI class="hotelstripcc">02 91483947</LI></UL><P>Located in the Eternal City, Italy, the ESH - Executive Style Hotel in Rome enjoys a convenient location in a green and quiet area and is connected to the centre of Rome by bus and metro, in only 5 minutes. This Rome 4-star hotel offers high-quality... <A href="http://www.venere.com/hotels/rome/esh-executive-style-hotel/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"> hotel details</A></P></DIV><DIV class="hotelstriprice"><DIV class="pricediscount">? <SPAN>440</SPAN></DIV><DIV class="hotelpricediscount">? <SPAN>520</SPAN></DIV><P>Total Price</P></DIV><UL class="hotelstripmenu"><LI><A href="http://www.venere.com/hotels/rome/esh-executive-style-hotel/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#pictures" target="_blank"> Photos </A></LI><LI><A href="http://www.venere.com/hotels/rome/esh-executive-style-hotel/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#location" target="_blank"> Location </A></LI><LI class="hotelstripmenu_ratingbox"><A href="http://www.venere.com/hotels/rome/esh-executive-style-hotel/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#reviews" target="_blank"> Hotel Reviews </A><DIV class="userating_9"> <SPAN> 9 </SPAN> </DIV> </LI><LI class="hotelstripmenu_buttonbox"><A href="http://www.venere.com/hotels/rome/esh-executive-style-hotel/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank" class="hotelstripmenubutton"> Book </A> </LI></UL></DIV><DIV id="hotel225391" class="hotelstrip"><DIV class="hotelstripinfo"><A title="Hotel Scheppers" href="http://www.venere.com/hotels/rome/hotel-scheppers/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"><IMG src="http://img.venere.com/img/hotel/1/9/3/5/225391/225391.jpg" alt="Hotel Scheppers"/></A><H3><A href="http://www.venere.com/hotels/rome/hotel-scheppers/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank">Hotel Scheppers</A>Rome</H3><UL><LI><DIV class="stars_3"> <IMG src="http://www.venere.com/img/category/star_7l.gif" alt="3 star hotel"/></DIV></LI> <LI class="hotelstripzone">Aurelio and Monteverde</LI><LI class="hotelstripcc">02 91483925</LI></UL><P>Rome's brand new Scheppers Hotel is located along Via Aurelia around 10 minutes from Vatican City and the Sistine Chapel, in a peaceful and verdant area far from the chaos and traffic of Rome's city-centre, which remains within close reach and is well... <A href="http://www.venere.com/hotels/rome/hotel-scheppers/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"> hotel details</A></P></DIV><DIV class="hotelstriprice"><DIV class="pricediscount">? <SPAN>280</SPAN></DIV><DIV class="hotelpricediscount">? <SPAN>360</SPAN></DIV><P>Total Price</P></DIV><UL class="hotelstripmenu"><LI><A href="http://www.venere.com/hotels/rome/hotel-scheppers/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#pictures" target="_blank"> Photos </A></LI><LI><A href="http://www.venere.com/hotels/rome/hotel-scheppers/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#location" target="_blank"> Location </A></LI><LI class="hotelstripmenu_ratingbox"><A href="http://www.venere.com/hotels/rome/hotel-scheppers/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#reviews" target="_blank"> Hotel Reviews </A><DIV class="userating_7"> <SPAN> 7.1 </SPAN> </DIV> </LI><LI class="hotelstripmenu_buttonbox"><DIV id="deal225391-7" class="deals_hotdeal"><P>Special Price</P></DIV><DIV class="deal_hover"><P>Look at the rooms on offer!
+</P></DIV><A href="http://www.venere.com/hotels/rome/hotel-scheppers/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank" class="hotelstripmenubutton"> Book </A> </LI></UL></DIV><DIV id="hotel2047" class="hotelstrip"><DIV class="hotelstripinfo"><A title="Hotel Aurelius" href="http://www.venere.com/hotels/rome/hotel-aurelius/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"><IMG src="http://img.venere.com/img/hotel/7/4/0/2/2047/2047.jpg" alt="Hotel Aurelius"/></A><H3><A href="http://www.venere.com/hotels/rome/hotel-aurelius/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank">Hotel Aurelius</A>Rome</H3><UL><LI><DIV class="stars_4"> <IMG src="http://www.venere.com/img/category/star_7l.gif" alt="4 star hotel"/></DIV></LI> <LI class="hotelstripzone">Aurelio and Monteverde</LI><LI class="hotelstripcc">02 91483930</LI></UL><P>Conveniently located next to the Cornelia metro stop, in the northern part of the city, this budget and cheerful Rome hotel offers a comfortable base for exploring the Eternal City. The Aurelius Hotel is perfect for visiting the Vatican City, shopping on... <A href="http://www.venere.com/hotels/rome/hotel-aurelius/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank"> hotel details</A></P></DIV><DIV class="hotelstriprice"><DIV class="pricediscount">? <SPAN>460</SPAN></DIV><DIV class="hotelpricediscount">? <SPAN>540</SPAN></DIV><P>Total Price</P></DIV><UL class="hotelstripmenu"><LI><A href="http://www.venere.com/hotels/rome/hotel-aurelius/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#pictures" target="_blank"> Photos </A></LI><LI><A href="http://www.venere.com/hotels/rome/hotel-aurelius/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#location" target="_blank"> Location </A></LI><LI class="hotelstripmenu_ratingbox"><A href="http://www.venere.com/hotels/rome/hotel-aurelius/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1#reviews" target="_blank"> Hotel Reviews </A><DIV class="userating_8"> <SPAN> 7.7 </SPAN> </DIV> </LI><LI class="hotelstripmenu_buttonbox"><A href="http://www.venere.com/hotels/rome/hotel-aurelius/?sd=16&amp;sm=08&amp;sy=2011&amp;ed=20&amp;em=08&amp;ey=2011&amp;pval=2&amp;rval=1" target="_blank" class="hotelstripmenubutton"> Book </A> </LI></UL></DIV></DIV>
+<DIV id="boxright">
+<DIV id="seealsobox"> <STRONG>Hotels near Rome</STRONG>
+<SPAN id="seealsoboxairports"> <P>Airport hotels</P></SPAN>
+<UL>
+<LI><A href="http://www.venere.com/rome/rome-ciampino-airport/" class="airport">Rome Ciampino Airport</A></LI>
+<LI><A href="http://www.venere.com/rome/rome-fiumicino-airport/" class="airport">Rome Fiumicino Airport</A></LI>
+</UL>
+<SPAN id="seealsoboxsurroundings"><P>Surroundings</P></SPAN>
+<UL>
+<LI><A href="http://www.venere.com/hotels/italy/around-rome/" class="surrounding">Around Rome</A></LI>
+</UL>
+</DIV>
+</DIV>
+</DIV>
+<DIV id="paging_bottom">
+<DIV class="pagingnumberhotels"><SPAN>22?</SPAN><A href="http://www.venere.com/italy/rome/?pskip=2">Rome hotels </A></DIV>
+<A class="pagingdisabled previous" id="previous">&lt;&lt; Previous Page</A>
+<DIV class="pagingbottombox">
+<SPAN id="current" class="pagecurrent">1</SPAN><SPAN class="extreme" id="last">2</SPAN>
+
+
+
+         
+</DIV>
+<A class="next" id="next" href="http://www.venere.com/italy/rome/?pskip=2">Next Page &gt;&gt;</A>
+</DIV>
+<DIV id="prefooter">
+<DIV id="prefooter_cityzone">
+<STRONG> Search for hotels in these popular areas of Rome  </STRONG>
+<UL>
+<LI><A href="http://www.venere.com/hotels/rome/aurelio-and-monteverde/">Aurelio and Monteverde Hotels</A></LI>
+<LI><A href="http://www.venere.com/hotels/rome/aventino-and-testaccio/">Aventino and Testaccio Hotels</A></LI>
+<LI><A href="http://www.venere.com/hotels/rome/camilluccia/">Camilluccia Hotels</A></LI>
+<LI><A href="http://www.venere.com/hotels/rome/cassia/">Cassia Hotels</A></LI>
+<LI><A href="http://www.venere.com/hotels/rome/colosseum/">Colosseum Hotels</A></LI>
+<LI><A href="http://www.venere.com/hotels/rome/esquilino-termini/">Esquilino - Termini Hotels</A></LI>
+<LI><A href="http://www.venere.com/hotels/rome/eur/">EUR Hotels</A></LI>
+<LI><A href="http://www.venere.com/hotels/rome/flaminio-parioli/">Flaminio Parioli Hotels</A></LI>
+<LI><A href="http://www.venere.com/hotels/rome/marsala-termini/">Marsala - Termini Hotels</A></LI>
+<LI><A href="http://www.venere.com/hotels/rome/navona/">Navona Hotels</A></LI>
+<LI><A href="http://www.venere.com/hotels/rome/pantheon/">Pantheon Hotels</A></LI>
+<LI><A href="http://www.venere.com/hotels/rome/porta-portese/">Porta Portese Hotels</A></LI>
+<LI><A href="http://www.venere.com/hotels/rome/prati/">Prati Hotels</A></LI>
+<LI><A href="http://www.venere.com/hotels/rome/repubblica-termini/">Repubblica - Termini Hotels</A></LI>
+<LI><A href="http://www.venere.com/hotels/rome/san-giovanni/">San Giovanni Hotels</A></LI>
+<LI><A href="http://www.venere.com/hotels/rome/san-lorenzo/">San Lorenzo Hotels</A></LI>
+<LI><A href="http://www.venere.com/hotels/rome/spanish-steps/">Spanish Steps Hotels</A></LI>
+<LI><A href="http://www.venere.com/hotels/rome/trastevere/">Trastevere Hotels</A></LI>
+<LI><A href="http://www.venere.com/hotels/rome/trevi-fountain/">Trevi Fountain Hotels</A></LI>
+<LI><A href="http://www.venere.com/hotels/rome/trieste-salario-nomentano/">Trieste Salario Nomentano Hotels</A></LI>
+<LI><A href="http://www.venere.com/hotels/rome/university-campus-citta-universitaria/">University Campus (Citt? Universitaria) Hotels</A></LI>
+<LI><A href="http://www.venere.com/hotels/rome/vatican/">Vatican Hotels</A></LI>
+<LI><A href="http://www.venere.com/hotels/rome/via-veneto/">Via Veneto Hotels</A></LI>
+</UL>
+</DIV>
+<DIV id="prefooter_type">
+<STRONG> See more accommodation options in Rome </STRONG>
+<UL>
+<LI> <A href="http://www.venere.com/townhouse-suites/rome/">Town House Suites in Rome</A> </LI>
+<LI> <A href="http://www.venere.com/bandb/rome/">Bed and Breakfasts in Rome</A> </LI>
+<LI> <A href="http://www.venere.com/guest-houses/italy/rome/rome/">Guest Houses in Rome</A> </LI>
+<LI> <A href="http://www.venere.com/serviced-apartments/rome/">Serviced Apartments in Rome</A> </LI>
+<LI> <A href="http://www.venere.com/vacation-rentals/rome/">Vacation Rentals in Rome</A> </LI>
+<LI> <A href="http://www.venere.com/accommodation/rome/">Other accommodation in Rome</A> </LI>
+<LI> Find <A target="_blank" href="http://www.tripadvisor.com/VacationRentals-g187791-Reviews-Rome_Lazio-Vacation_Rentals.html">Rome Villas</A> on TripAdvisor </LI>
+</UL>
+</DIV>
+</DIV>
+<SCRIPT language="JavaScript" type="text/javascript">
+//&lt;![CDATA[
+   var properties_info_map=[{"price":27,"id":2113,"reviews_source":"VEN","user_rating":7.4},{"price":40,"id":236157,"reviews_source":"VEN","user_rating":8.4},{"price":59,"id":245901,"reviews_source":"VEN","user_rating":9.1},{"price":20,"id":198452,"reviews_source":"VEN","user_rating":7.2},{"price":39,"id":2302,"reviews_source":"VEN","user_rating":8.2},{"price":49,"id":2162,"reviews_source":"VEN","user_rating":8.7},{"price":45,"id":2152,"reviews_source":"VEN","user_rating":7.4},{"price":126,"id":242307,"reviews_source":"VEN","user_rating":8.9},{"price":55,"id":211955,"reviews_source":"VEN","user_rating":9},{"price":70,"id":2224,"reviews_source":"VEN","user_rating":8.1},{"price":38,"id":198302,"reviews_source":"VEN","user_rating":7.8},{"price":15,"id":22243,"reviews_source":"VEN","user_rating":7.4},{"price":70,"id":340225,"reviews_source":"TRIPADV","user_rating":9},{"price":68,"id":309394,"reviews_source":"VEN","user_rating":9.8},{"price":40,"id":232475,"reviews_source":"VEN","user_rating":7.8}]
+   var pskip=1
+   var tot_pages=93
+   var tot_properties=1395
+   var custom_info_js={"default_h1":"%city% %type_pl%"}
+   var search_by_name_tip="Hotel Name, Chain, ..."
+   
+//]]&gt;
+
+</SCRIPT>
+<DIV id="footer">	    
+<DIV> 
+<UL>
+<LI><A href="http://www.venere.com/aboutus/?lg=en">More about venere.com</A></LI>
+<LI><A target="_blank" href="https://careers.peopleclick.com/careerscp/client_expedia/external/search.do">Careers</A></LI>
+<LI><A href="http://www.venere.com/privacy/?lg=en">Your privacy is guaranteed!</A></LI>
+</UL>
+<UL>
+<LI><A href="http://www.venere.com/destinations/">Top destinations</A></LI>
+<LI><A href="http://www.venere.com/destinations/other/">More destinations</A></LI>
+</UL>
+<UL>
+<LI><A target="_blank" href="http://www.facebook.com/venerecom">Become a fan on Facebook</A></LI>
+<LI><A target="_blank" href="http://www.twitter.com/Venere_Hotels/">Follow us on Twitter</A></LI>
+</UL> 
+<UL>
+<LI><A href="http://www.venere.com/cgi/user/index.php?lg=en">Your Reservations</A></LI>
+<LI><A href="http://www.venere.com/cgi/vac/index.php?lg=en">Affiliates</A></LI>
+<LI/>
+<LI><A href="http://www.venere.com/cgi/tai/index.php?lg=en&amp;type=ta">Travel Agents</A></LI>
+<LI><A href="https://secure.venere.com/cgi/property/index.php?lg=en">Hoteliers</A></LI>
+</UL>       
+</DIV>
+<DIV id="copyright">
+<A onclick="WOpen(vsRoot,'',vsParams)"> <IMG src="http://www.venere.com/img/VeriSign/en_VeriSign.png" alt="Venere.com, Verisign secured" id="very-sign"/> </A>
+<SCRIPT type="text/javascript" language="javascript">
+                  //&lt;![CDATA[
+                     vsParams = 'toolbar=no,location=yes,directories=no,status=yes,menubar=yes,scrollbars=yes,resizable=yes,width=700,height=650';
+                     vsRoot = 'https://seal.verisign.com/splash?form_file=fdf/splash.fdf&amp;dn=secure.venere.com&amp;lang=en';
+                  //]]&gt;
+                  </SCRIPT>
+<DIV><P>Venere Net SpA 2011 ? (single shareholder) - under the direction and management of Hotels.com LP <BR/>
+VAT No 05649781001 - Regione Lazio Administrative act N.305, 05.04.2001</P> </DIV>
+</DIV>
+</DIV>
+</DIV>
+<SCRIPT language="JavaScript" type="text/javascript">
+         
+         //&lt;![CDATA[
+            var generalInfo={"lg":"en","ref":null,"cc_op":null,"geo_id":3425,"geo_level":6,"is_surrounding":0,"type":"C","geo_name":"Rome","country":"Italy","city_area":null,"country_currency":"EUR"};
+            generalInfo['currency']= 'EUR';
+            generalInfo['country_code']= 'IT';
+                           
+                  generalInfo['cc_phone_numbers'] = ['02 91483913', '02 91483916', '02 91483918', '02 91483920', '02 91483923', '02 91483925', '02 91483928', '02 91483930', '02 91483932', '02 91483934', '02 91483937', '02 91483939', '02 91483941', '02 91483943', '02 91483945', '02 91483947', '02 91483952'];
+               
+              
+            var avail_parameters = new AvailParameters('', '', '', '', '', '', '', '');
+         
+         //]]&gt;
+         </SCRIPT>
+
+<SCRIPT type="text/javascript" src="http://www.venere.com/common/js/track.js?v=6b"/>
+
+<SCRIPT type="text/javascript">
+venereTrack('110607-084749-1854096516', 'L3NlYXJjaC9pbmRleC5waHA-Z2VvaWQ9MzQyNSZsZz1lbg==');
+</SCRIPT>
+<SCRIPT src="/cgi/common/js/web_analytics/om_tracking_v12.js?v=1" language="JavaScript" type="text/javascript"/>
+<SCRIPT language="Javascript" type="text/javascript">
+trigger_tracking("trk_ctx=trkns&amp;"+"trk_url="+encodeURIComponent(window.location)+"&amp;trk_web_id=151.8.106.201-1307436457-973960");
+if ( !window.v_abs) warnNoForehead('110607-084749-1854096516')
+</SCRIPT>
+                                                                  
+<SCRIPT src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"/><SCRIPT type="text/javascript" src="http://maps.gstatic.com/intl/en_us/mapfiles/api-3/5/6/main.js"/>
+<DIV class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all ui-helper-hidden-accessible" id="ui-datepicker-div" style="position: absolute; top: 255px; left: 208px; display: none;"><DIV class="ui-datepicker-header ui-widget-header ui-helper-clearfix ui-corner-all"><A title="Prev" onclick="DP_jQuery.datepicker._adjustDate('#checkout', -1, 'M');" class="ui-datepicker-prev ui-corner-all"><SPAN class="ui-icon ui-icon-circle-triangle-w">Prev</SPAN></A><A title="Next" onclick="DP_jQuery.datepicker._adjustDate('#checkout', +1, 'M');" class="ui-datepicker-next ui-corner-all"><SPAN class="ui-icon ui-icon-circle-triangle-e">Next</SPAN></A><DIV class="ui-datepicker-title"><SPAN class="ui-datepicker-month">August</SPAN> <SPAN class="ui-datepicker-year">2011</SPAN></DIV></DIV><TABLE class="ui-datepicker-calendar"><THEAD><TR><TH><SPAN title="Monday">Mo</SPAN></TH><TH><SPAN title="Tuesday">Tu</SPAN></TH><TH><SPAN title="Wednesday">We</SPAN></TH><TH><SPAN title="Thursday">Th</SPAN></TH><TH><SPAN title="Friday">Fr</SPAN></TH><TH class="ui-datepicker-week-end"><SPAN title="Saturday">Sa</SPAN></TH><TH class="ui-datepicker-week-end"><SPAN title="Sunday">Su</SPAN></TH></TR></THEAD><TBODY><TR><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class=""><A href="#" class="ui-state-default">1</A></TD><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class=""><A href="#" class="ui-state-default">2</A></TD><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class=""><A href="#" class="ui-state-default">3</A></TD><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class=""><A href="#" class="ui-state-default">4</A></TD><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class=""><A href="#" class="ui-state-default">5</A></TD><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class="ui-datepicker-week-end"><A href="#" class="ui-state-default">6</A></TD><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class="ui-datepicker-week-end"><A href="#" class="ui-state-default">7</A></TD></TR><TR><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class=""><A href="#" class="ui-state-default">8</A></TD><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class=""><A href="#" class="ui-state-default">9</A></TD><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class=""><A href="#" class="ui-state-default">10</A></TD><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class=""><A href="#" class="ui-state-default">11</A></TD><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class=""><A href="#" class="ui-state-default">12</A></TD><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class="ui-datepicker-week-end"><A href="#" class="ui-state-default">13</A></TD><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class="ui-datepicker-week-end"><A href="#" class="ui-state-default">14</A></TD></TR><TR><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class=""><A href="#" class="ui-state-default">15</A></TD><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class=""><A href="#" class="ui-state-default">16</A></TD><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class=""><A href="#" class="ui-state-default">17</A></TD><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class=""><A href="#" class="ui-state-default">18</A></TD><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class=""><A href="#" class="ui-state-default">19</A></TD><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class="ui-datepicker-week-end ui-datepicker-days-cell-over ui-datepicker-current-day"><A href="#" class="ui-state-default ui-state-active ui-state-hover">20</A></TD><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class="ui-datepicker-week-end"><A href="#" class="ui-state-default">21</A></TD></TR><TR><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class=""><A href="#" class="ui-state-default">22</A></TD><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class=""><A href="#" class="ui-state-default">23</A></TD><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class=""><A href="#" class="ui-state-default">24</A></TD><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class=""><A href="#" class="ui-state-default">25</A></TD><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class=""><A href="#" class="ui-state-default">26</A></TD><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class="ui-datepicker-week-end"><A href="#" class="ui-state-default">27</A></TD><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class="ui-datepicker-week-end"><A href="#" class="ui-state-default">28</A></TD></TR><TR><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class=""><A href="#" class="ui-state-default">29</A></TD><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class=""><A href="#" class="ui-state-default">30</A></TD><TD onclick="DP_jQuery.datepicker._selectDay('#checkout',7,2011, this);return false;" class=""><A href="#" class="ui-state-default">31</A></TD><TD class="ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">?</TD><TD class="ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">?</TD><TD class="ui-datepicker-week-end ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">?</TD><TD class="ui-datepicker-week-end ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">?</TD></TR></TBODY></TABLE></DIV></BODY></HTML>

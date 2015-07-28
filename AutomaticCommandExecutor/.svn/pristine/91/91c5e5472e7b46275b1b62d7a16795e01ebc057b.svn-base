@@ -1,0 +1,264 @@
+/*                   Copyright (c) 2007 Venere Net S.p.A.
+ *                             All Rights Reserved
+ *
+ * This software is the confidential and proprietary information of
+ * Venere Net S.p.A. ("Confidential  Information"). You  shall not disclose
+ * such  Confidential Information and shall use it only in accordance with
+ * the terms  of the license agreement you entered into with Venere Net S.p.A.
+ *
+ * VENERE NET S.P.A. MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY
+ * OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+ * OR NON-INFRINGEMENT. VENERE NET S.P.A. SHALL NOT BE LIABLE FOR ANY DAMAGES
+ * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS
+ * SOFTWARE OR ITS DERIVATIVES.
+ */
+package com.venere.ace.abstracts;
+
+import com.venere.ace.dtos.ATaskResultDTO;
+import com.venere.ace.exception.EExecutorException;
+import com.venere.ace.exception.EHandlerException;
+import com.venere.ace.interfaces.ICommandExecutor;
+import com.venere.ace.interfaces.ICommandResult;
+import com.venere.ace.interfaces.IDiagnostic;
+import com.venere.ace.interfaces.IOperator;
+import com.venere.ace.utility.EnumTestConditions;
+import com.venere.ace.utility.IEnum;
+import com.venere.ace.utility.StringUtil;
+import com.venere.utils.dto.DiagnosticDTO;
+import com.venere.utils.test.bl.TestManager;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.List;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+/**
+ *
+ * @author quatrini
+ */
+public class AExecutor<IHandler, IRequest> implements ICommandExecutor {
+
+   protected String sClassName;
+   protected Log oLogger;
+   protected IEnum oTaskId;
+   protected String sTaskDescription;
+   protected AHandler oHandler;
+   protected IRequest oRequest;
+   protected ICommandExecutor oPostTask;
+   protected ICommandExecutor oPreTask;
+   protected IDiagnostic oDiagnostic;
+   private String sDependOfCondition;
+
+   public AExecutor(String sClassName) {
+      this.sClassName = sClassName;
+      oLogger = LogFactory.getLog(sClassName);
+   }
+
+   @Override
+   public IDiagnostic getDiagnostic() {
+      return oDiagnostic;
+   }
+
+   @Override
+   public void setDiagnostic(IDiagnostic oDiagnostic) {
+      this.oDiagnostic = oDiagnostic;
+   }
+
+   @Override
+   public String getTaskDescription() {
+      return sTaskDescription;
+   }
+
+   @Override
+   public void setTaskDescription(String sTaskDescription) {
+      this.sTaskDescription = sTaskDescription;
+   }
+
+   public ICommandExecutor getPostTask() {
+      return oPostTask;
+   }
+
+   @Override
+   public String getClassName() {
+      return sClassName;
+   }
+
+   @Override
+   public void setClassName(String sClassName) {
+      this.sClassName = sClassName;
+   }
+
+   @Override
+   public void setHandler(Object oBrowser) {
+      this.oHandler = (AHandler) oBrowser;
+   }
+
+   @Override
+   public AHandler getHandler() {
+      return this.oHandler;
+   }
+
+   @Override
+   public void setTaskId(IEnum oTaskName) {
+      this.oTaskId = oTaskName;
+   }
+
+   @Override
+   public void setPostTask(ICommandExecutor oPostAction) {
+      this.oPostTask = oPostAction;
+   }
+
+   public ICommandExecutor getPreTask() {
+      return oPreTask;
+   }
+
+   @Override
+   public void setPreTask(ICommandExecutor oPostAction) {
+      this.oPreTask = oPostAction;
+   }
+
+   @Override
+   public void validate() throws EExecutorException {
+      // TBD
+   }
+
+   @Override
+   public String toString() {
+      String sReturn = "Task Executor :{Task Id :\"" + oTaskId.getActionCode() + "\" , Request task:\"" + oRequest.toString() + "\" }";
+      return sReturn;
+   }
+
+   @Override
+   public void setRequest(Object oRequest) {
+      this.oRequest = (IRequest) oRequest;
+   }
+
+   @Override
+   public IRequest getRequest() {
+      return oRequest;
+   }
+
+   public void setDependOfCondition(String sDependOfCondition) {
+      this.sDependOfCondition = sDependOfCondition;
+   }
+
+   public String getDependOfCondition() {
+      return sDependOfCondition;
+   }
+
+   @Override
+   public ICommandResult doTask() throws EExecutorException {
+
+      Method oInvokingMethod = null;
+      ICommandResult oResulTask = null;
+
+      try {
+       //  if (evaluateCondition()) {
+            try {
+               oInvokingMethod = oHandler.getClass().getMethod(oTaskId.getActionCode(), new Class[]{oRequest.getClass().getInterfaces()[0]});
+            } catch (NoSuchMethodException ex) {
+               String sMessage = "No Action Recognized For " + oTaskId.getActionCode();
+               oLogger.error(sMessage);
+               throw new EExecutorException(sMessage, ex);
+            } catch (SecurityException ex) {
+               String sMessage = "Security Excetpion for " + oTaskId.getActionCode();
+               oLogger.error(sMessage);
+               throw new EExecutorException(sMessage, ex);
+            }
+
+            try {
+
+               oResulTask = (ICommandResult) oInvokingMethod.invoke(oHandler, oRequest);
+
+            } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+               String sMessage = "Error invoking method " + oInvokingMethod.getName() + ": Action code= " + oTaskId.getActionCode() + " Task Description= " + getTaskDescription();
+               oLogger.error(sMessage);
+               oLogger.error(ex.getCause());
+               throw new EExecutorException(sMessage, ex);
+            }
+
+            if (oResulTask != null && !oResulTask.isCorrect() && oDiagnostic != null) {
+               DiagnosticDTO oDiagnosticDTO = null;
+               oDiagnosticDTO = oDiagnostic.performDiagnosis(this);
+               oResulTask.setDiagnostic(oDiagnosticDTO);
+            }
+         //}
+      } catch (EHandlerException ex) {
+         String sMessage = "Error while performing " + oRequest.toString();
+         oResulTask.setIsCorrect(false);
+         oResulTask.setMessage(sMessage + ". " + ex.getMessage());
+      } catch (RuntimeException ex) {
+         String sMessage = "Unexpected Execution Error " + oRequest.toString();
+         oLogger.error(sMessage);
+         throw new EExecutorException(sMessage, ex);
+      }
+
+      return oResulTask;
+   }
+
+   public boolean evaluateCondition() {
+      boolean boEvaluation = true;
+      try {
+         if (this.getDependOfCondition() != null) {
+            List<String> splittedCond = StringUtil.pipeSplit(this.getDependOfCondition());
+
+            String sClassName = EnumTestConditions.valueOf(splittedCond.get(0).toUpperCase()).getActionCode();
+            IOperator oOperator = (IOperator) Class.forName("com.venere.ace.utility." + sClassName).newInstance();
+            boEvaluation = oOperator.evaluate(this.getDependOfCondition(), TestManager.getConditionsMap());
+            oLogger.info("The action " + sTaskDescription + " depends on the condition: " + this.getDependOfCondition() + ". The condition value is: " + boEvaluation);
+         }
+      } catch (Exception e) {
+         oLogger.warn("Error during condition '" + this.getDependOfCondition() + "' evaluation. The action " + sTaskDescription + " will be executed");
+
+      }
+
+      return boEvaluation;
+   }
+
+   @Override
+   public ICommandResult checkPreCondition() throws EExecutorException {
+      ICommandResult oResulTask = null;
+      if (oPreTask != null) {
+         try {
+            oResulTask = oPreTask.doTask();
+         } catch (AException ex) {
+            String sMessage = "Error while performing check pre condition" + oPreTask.toString();
+            oResulTask.setIsCorrect(false);
+            oResulTask.setMessage(sMessage + ". " + ex.getMessage());
+         }
+      }
+
+      return oResulTask;
+   }
+
+   @Override
+   public ICommandResult checkPostCondition() throws EExecutorException {
+      ICommandResult oResulTask = null;
+      if (oPostTask != null) {
+         try {
+            oResulTask = oPostTask.doTask();
+         } catch (AException ex) {
+            String sMessage = "Error while performing check post condition" + oPostTask.toString();
+            oResulTask.setIsCorrect(false);
+            oResulTask.setMessage(sMessage + ". " + ex.getMessage());
+         }
+      }
+
+      return oResulTask;
+   }
+
+   @Override
+   public ICommandResult terminate() throws EExecutorException {
+      ICommandResult oResulTask = new ATaskResultDTO();
+      oTaskId = oTaskId.getTerminateCode();
+      try {
+         oResulTask = this.doTask();
+      } catch (AException ex) {
+         String sMessage = "Error while performing terminate" + oTaskId;
+         oResulTask.setIsCorrect(false);
+         oResulTask.setMessage(sMessage + ". " + ex.getMessage());
+      }
+      return oResulTask;
+   }
+}

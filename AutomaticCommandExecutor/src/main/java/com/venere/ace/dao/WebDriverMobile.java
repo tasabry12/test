@@ -1,0 +1,798 @@
+/*                   Copyright (c) 2007 Venere Net S.p.A.
+ *                             All Rights Reserved
+ *
+ * This software is the confidential and proprietary information of
+ * Venere Net S.p.A. ("Confidential  Information"). You  shall not disclose
+ * such  Confidential Information and shall use it only in accordance with
+ * the terms  of the license agreement you entered into with Venere Net S.p.A.
+ *
+ * VENERE NET S.P.A. MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY
+ * OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+ * OR NON-INFRINGEMENT. VENERE NET S.P.A. SHALL NOT BE LIABLE FOR ANY DAMAGES
+ * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS
+ * SOFTWARE OR ITS DERIVATIVES.
+ */
+package com.venere.ace.dao;
+
+import com.venere.ace.abstracts.AException;
+import com.venere.ace.dtos.ATaskResultDTO;
+import com.venere.ace.exception.EHandlerException;
+import com.venere.ace.idtos.ICommandRequestDTO;
+import com.venere.ace.interfaces.ICommandResult;
+import com.venere.ace.interfaces.ITaskHandler;
+import com.venere.ace.utility.DateUtil;
+import com.venere.ace.utility.ScreenUtil;
+import com.venere.ace.utility.WebDriverUtil;
+//import io.selendroid.SelendroidKeys;
+import java.util.*;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.Augmenter;
+import org.openqa.selenium.remote.UnreachableBrowserException;
+import org.openqa.selenium.remote.RemoteWebElement;
+
+/**
+ *
+ * @author fcastaldi
+ */
+public class WebDriverMobile
+        extends WebDriverBrowser
+        implements ITaskHandler {
+
+   private WebDriverUtil driverUtil;
+
+   public void setDriverUtil(WebDriverUtil driverUtil) {
+      this.driverUtil = driverUtil;
+   }
+
+   public WebDriverMobile() {
+      super();
+   }
+
+   @Override
+   public ICommandResult open(ICommandRequestDTO obj) throws EHandlerException {
+      ATaskResultDTO oResult = null;
+      try {
+         try {
+            oBrowser.get(obj.getValue());
+         } catch (UnreachableBrowserException e) {
+            manageException(obj, e);
+         } catch (StaleElementReferenceException e) {
+            manageException(obj, e);
+         }
+         oResult = setResult(true, false, "Open Page Executed");
+
+         oLogger.debug("open method: " + obj.getValue());
+
+         driverUtil.waitFor(obj.getDelayMillisecond());
+         printRequest(obj);
+
+      } catch (RuntimeException ex) {
+         ScreenUtil oScreenUtil = new ScreenUtil(oBrowser);
+         oScreenUtil.makeAPrintScreen(obj.getTaskName());
+         String sMessage = ex.getMessage();
+         oLogger.error(sMessage);
+         throw new EHandlerException(EHandlerException.HandlerErrorCode.ACTION_TASK, sMessage, ex);
+      }
+      return oResult;
+   }
+
+   @Override
+   public ICommandResult click(ICommandRequestDTO obj) throws EHandlerException {
+
+      ATaskResultDTO oResult = null;
+      By oByElement = getWebElement(obj);
+      try {
+         try {
+            WebElement oElem = oBrowser.findElement(oByElement);
+            oElem.click();
+
+         } catch (UnreachableBrowserException e) {
+            manageException(obj, e);
+         } catch (StaleElementReferenceException e) {
+            manageException(obj, e);
+         }
+
+         oResult = setResult(true, false, "Click Operation Executed");
+         printRequest(obj);
+         try {
+            Thread.sleep(lDelayonChangeClick);
+         } catch (InterruptedException ex) {
+         }
+
+         driverUtil.waitFor(obj.getDelayMillisecond());
+      } catch (UnreachableBrowserException e) {
+         manageException(obj, e);
+
+      } catch (WebDriverException ex) {
+         ScreenUtil oScreenUtil = new ScreenUtil(oBrowser);
+         oScreenUtil.makeAPrintScreen(obj.getTaskName());
+         String sMessage = "WebDriver Exception in page: " + oBrowser.getCurrentUrl() + " for 'Click'. Request " + obj.toString();
+         oLogger.error(sMessage);
+         oResult = setResult(false, false, sMessage);
+      } catch (RuntimeException ex) {
+         ScreenUtil oScreenUtil = new ScreenUtil(oBrowser);
+         oScreenUtil.makeAPrintScreen(obj.getTaskName());
+         String sMessage = ex.getMessage();
+         oLogger.error(sMessage);
+         throw new EHandlerException(EHandlerException.HandlerErrorCode.ACTION_TASK, sMessage, ex);
+      }
+
+      return oResult;
+   }
+
+   @Override
+   public ICommandResult submit(ICommandRequestDTO obj) throws EHandlerException {
+
+      ATaskResultDTO oResult = null;
+      By oByElement = getWebElement(obj);
+      try {
+         try {
+            WebElement oElem = oBrowser.findElement(oByElement);
+            oElem.submit();
+         } catch (UnreachableBrowserException e) {
+            manageException(obj, e);
+         } catch (StaleElementReferenceException e) {
+            manageException(obj, e);
+         }
+
+         oResult = setResult(true, false, "Submit Operation Executed");
+         printRequest(obj);
+         try {
+            Thread.sleep(lDelayonChangeClick);
+         } catch (InterruptedException ex) {
+         }
+
+         driverUtil.waitFor(obj.getDelayMillisecond());
+
+      } catch (UnreachableBrowserException e) {
+         manageException(obj, e);
+
+      } catch (WebDriverException ex) {
+         ScreenUtil oScreenUtil = new ScreenUtil(oBrowser);
+         oScreenUtil.makeAPrintScreen(obj.getTaskName());
+         String sMessage = "WebDriver Exception in page: " + oBrowser.getCurrentUrl() + " for 'Submit'. Request " + obj.toString();
+         oLogger.error(sMessage);
+         oResult = setResult(false, false, sMessage);
+      } catch (RuntimeException ex) {
+         ScreenUtil oScreenUtil = new ScreenUtil(oBrowser);
+         oScreenUtil.makeAPrintScreen(obj.getTaskName());
+         String sMessage = ex.getMessage();
+         oLogger.error(sMessage);
+         throw new EHandlerException(EHandlerException.HandlerErrorCode.ACTION_TASK, sMessage, ex);
+      }
+
+      return oResult;
+   }
+
+   public ICommandResult clickBfBook(ICommandRequestDTO obj) throws EHandlerException {
+
+      ATaskResultDTO oResult = null;
+      By oByElement = getWebElement(obj);
+
+      try {
+         try {
+            WebElement oElem = oBrowser.findElement(oByElement);
+            oElem.click();
+
+         } catch (UnreachableBrowserException e) {
+            manageException(obj, e);
+         } catch (StaleElementReferenceException e) {
+            manageException(obj, e);
+         }
+
+         oResult = setResult(true, false, "Click Operation Executed");
+         printRequest(obj);
+         try {
+            Thread.sleep(lDelayonChangeClick);
+         } catch (InterruptedException ex) {
+         }
+
+      } catch (WebDriverException ex) {
+         ScreenUtil oScreenUtil = new ScreenUtil(oBrowser);
+         oScreenUtil.makeAPrintScreen(obj.getTaskName());
+         String sMessage = "WebDriver Exception in page: " + oBrowser.getCurrentUrl() + " for 'Click'. Request " + obj.toString();
+         oLogger.error(sMessage);
+         oResult = setResult(false, false, sMessage);
+      } catch (RuntimeException ex) {
+         ScreenUtil oScreenUtil = new ScreenUtil(oBrowser);
+         oScreenUtil.makeAPrintScreen(obj.getTaskName());
+         String sMessage = ex.getMessage();
+         oLogger.error(sMessage);
+         throw new EHandlerException(EHandlerException.HandlerErrorCode.ACTION_TASK, sMessage, ex);
+      }
+
+      return oResult;
+   }
+
+   @Override
+   public ICommandResult type(ICommandRequestDTO obj) throws AException {
+
+      By oByElement = getWebElement(obj);
+      ATaskResultDTO oResult = null;
+      try {
+         try {
+            oBrowser.findElement(oByElement).clear();
+            oBrowser.findElement(oByElement).click();
+            oBrowser.findElement(oByElement).sendKeys(obj.getValue());
+
+         } catch (UnreachableBrowserException e) {
+            manageException(obj, e);
+         }
+         oResult = setResult(true, false, "Action Typing Executed");
+         if (!oBrowser.findElement(oByElement).getAttribute("value").equals(obj.getValue())) {
+            closeAll(obj);
+            String sMessage = "Bad Typing Action Task on element " + obj.toString() + ". Action Stopping Executed";
+            ScreenUtil oScreenUtil = new ScreenUtil(oBrowser);
+            oScreenUtil.makeAPrintScreen(obj.getTaskName());
+            oLogger.error(sMessage);
+            oResult = setResult(false, true, sMessage);
+         }
+
+      } catch (WebDriverException ex) {
+         ScreenUtil oScreenUtil = new ScreenUtil(oBrowser);
+         oScreenUtil.makeAPrintScreen(obj.getTaskName());
+         String sMessage = "WebDriver Exception in page: " + oBrowser.getCurrentUrl() + " for 'Type'. Request " + obj.toString();
+         oLogger.error(sMessage);
+         oResult = setResult(false, false, sMessage);
+      } catch (RuntimeException ex) {
+         ScreenUtil oScreenUtil = new ScreenUtil(oBrowser);
+         oScreenUtil.makeAPrintScreen(obj.getTaskName());
+         String sMessage = ex.getMessage();
+         oLogger.error(sMessage);
+         throw new EHandlerException(EHandlerException.HandlerErrorCode.ACTION_TASK, sMessage, ex);
+      }
+
+      printRequest(obj);
+      return oResult;
+   }
+
+   @Override
+   public ICommandResult select(ICommandRequestDTO obj) throws AException {
+      ATaskResultDTO oResult = null;
+      By oByElement = getWebElement(obj);
+      try {
+
+         try {
+            WebElement select = oBrowser.findElement(oByElement);
+
+            List<WebElement> options = select.findElements(By.tagName("option"));
+            for (WebElement option : options) {
+               if (option.getText().equals(obj.getValue())) {
+                  option.click();
+                  break;
+               }
+            }
+
+         } catch (StaleElementReferenceException e) {
+            manageException(obj, e);
+         }
+
+         printRequest(obj);
+         driverUtil.waitFor(obj.getDelayMillisecond());
+      } catch (UnreachableBrowserException e) {
+         manageException(obj, e);
+
+      } catch (WebDriverException ex) {
+         ScreenUtil oScreenUtil = new ScreenUtil(oBrowser);
+         oScreenUtil.makeAPrintScreen(obj.getTaskName());
+         String sMessage = "WebDriver Exception in page: " + oBrowser.getCurrentUrl() + " for 'Select Value'. Request " + obj.toString();
+         oLogger.error(sMessage);
+         oResult = setResult(false, false, sMessage);
+      } catch (RuntimeException ex) {
+         ScreenUtil oScreenUtil = new ScreenUtil(oBrowser);
+         oScreenUtil.makeAPrintScreen(obj.getTaskName());
+         String sMessage = ex.getMessage();
+         oLogger.error(sMessage);
+         throw new EHandlerException(EHandlerException.HandlerErrorCode.ACTION_TASK, sMessage, ex);
+      }
+
+      if (oResult == null) {
+         oResult = setResult(true, false, "Select Value Action Executed");
+      }
+
+      return oResult;
+   }
+
+   @Override
+   public ICommandResult selectValue(ICommandRequestDTO obj) throws AException {
+      ATaskResultDTO oResult = null;
+      By oByElement = getWebElement(obj);
+      //Select select = null;
+      try {
+
+         try {
+            WebElement select = oBrowser.findElement(oByElement);
+//            select = new Select(oElem);
+//            select.selectByValue(obj.getValue());
+
+            List<WebElement> options = select.findElements(By.tagName("option"));
+            for (WebElement option : options) {
+               if (option.getAttribute("value").equals(obj.getValue())) {
+                  option.click();
+                  break;
+               }
+            }
+
+         } catch (StaleElementReferenceException e) {
+            manageException(obj, e);
+         }
+
+         printRequest(obj);
+         driverUtil.waitFor(obj.getDelayMillisecond());
+      } catch (UnreachableBrowserException e) {
+         manageException(obj, e);
+
+      } catch (WebDriverException ex) {
+         ScreenUtil oScreenUtil = new ScreenUtil(oBrowser);
+         oScreenUtil.makeAPrintScreen(obj.getTaskName());
+         String sMessage = "WebDriver Exception in page: " + oBrowser.getCurrentUrl() + " for 'Select Value'. Request " + obj.toString();
+         oLogger.error(sMessage);
+         oResult = setResult(false, false, sMessage);
+      } catch (RuntimeException ex) {
+         ScreenUtil oScreenUtil = new ScreenUtil(oBrowser);
+         oScreenUtil.makeAPrintScreen(obj.getTaskName());
+         String sMessage = ex.getMessage();
+         oLogger.error(sMessage);
+         throw new EHandlerException(EHandlerException.HandlerErrorCode.ACTION_TASK, sMessage, ex);
+      }
+
+      if (oResult == null) {
+         oResult = setResult(true, false, "Select Value Action Executed");
+      }
+
+      return oResult;
+   }
+
+   @Override
+   public ICommandResult setCookie(ICommandRequestDTO obj) throws AException {
+      String sName = obj.getLocationElement();
+      String sValue = obj.getValue();
+      String sParams = obj.getLocatorType();
+
+      String sPath = sDefaultCookiePath;
+      String sDomain = sDefaultCookieDomain;
+      Date dExpires = null;
+      String rMessage = null;
+      try {
+         StringTokenizer stParams = new StringTokenizer(sParams, ",");
+         while (stParams.hasMoreTokens()) {
+            String[] asKeyValue = stParams.nextToken().split("=");
+            String sKey = asKeyValue[0];
+            switch (sKey) {
+               case "path":
+                  sPath = asKeyValue[1];
+                  break;
+               case "domain":
+                  sDomain = asKeyValue[1];
+                  break;
+               case "expires":
+                  String sExpires = asKeyValue[1];
+                  Calendar cal = Calendar.getInstance();
+                  cal.add(Calendar.SECOND, Integer.parseInt(sExpires));
+                  dExpires = cal.getTime();
+                  break;
+            }
+         }
+
+         if (sName == null || sName.isEmpty()) {
+            throw new EHandlerException(EHandlerException.HandlerErrorCode.ACTION_TASK, "When setting a cookie object Location and Value are mandatory");
+
+         } else if (sValue == null || sValue.isEmpty()) {
+            rMessage = "Cookie " + sName + " not set";
+
+         } else {
+            rMessage = "Cookie " + sName + " successful set";
+            Cookie oNewCookie = new Cookie(sName, sValue, sDomain, sPath, dExpires, false);
+
+            oBrowser.manage().addCookie(oNewCookie);
+
+            Cookie aCookie = oBrowser.manage().getCookieNamed(sName);
+            oLogger.debug("Set cookie: " + String.format("%s -> %s", aCookie.getName(), aCookie.getValue()) + " Domain: " + aCookie.getDomain());
+
+         }
+      } catch (UnreachableBrowserException e) {
+         manageException(obj, e);
+
+      } catch (RuntimeException ex) {
+         ScreenUtil oScreenUtil = new ScreenUtil(oBrowser);
+         oScreenUtil.makeAPrintScreen(obj.getTaskName());
+         String sMessage = ex.getMessage();
+         oLogger.error(sMessage);
+         throw new EHandlerException(EHandlerException.HandlerErrorCode.ACTION_TASK, sMessage, ex);
+      } catch (Exception e) {
+         ScreenUtil oScreenUtil = new ScreenUtil(oBrowser);
+         oScreenUtil.makeAPrintScreen(obj.getTaskName());
+         String sMessage = e.getMessage();
+         oLogger.error(sMessage);
+         throw new EHandlerException(EHandlerException.HandlerErrorCode.ACTION_TASK, sMessage, e);
+      }
+
+      return setResult(true, false, rMessage);
+   }
+
+   private void manageException(ICommandRequestDTO obj, Exception e) {
+      oLogger.warn(obj.getTaskName() + " - Managed Exception: " + e.getClass());
+      driverUtil.waitFor(3000);
+   }
+
+   public ICommandResult clickCheckBox(ICommandRequestDTO obj) throws EHandlerException {
+
+      ATaskResultDTO oResult = null;
+      By oByElement = getWebElement(obj);
+      Set oSetInitialHandles = oBrowser.getWindowHandles();
+      String sCurrentWindowHandle = oBrowser.getWindowHandle();
+
+      try {
+         try {
+            WebElement oElem = oBrowser.findElement(oByElement);
+            oElem.click();
+            int num = 0;
+            while (!oElem.isSelected() && num < 3) {
+               oElem.click();
+               num++;
+            }
+         } catch (UnreachableBrowserException e) {
+            manageException(obj, e);
+         } catch (StaleElementReferenceException e) {
+            manageException(obj, e);
+         }
+
+         oResult = setResult(true, false, "Click Operation Executed");
+         printRequest(obj);
+         try {
+            Thread.sleep(lDelayonChangeClick);
+         } catch (InterruptedException ex) {
+         }
+
+         Set oSetAfterCommandHandles = oBrowser.getWindowHandles();
+         if (oSetInitialHandles.size() != oSetAfterCommandHandles.size()) {
+            for (Iterator oIt = oSetAfterCommandHandles.iterator(); oIt.hasNext();) {
+               String sHandles = (String) oIt.next();
+               if (!oSetInitialHandles.contains(sHandles)) {
+                  oBrowser.switchTo().window(sHandles);
+                  if (isOpenedWindowBlacklisted()) {
+                     oBrowser.switchTo().window(sCurrentWindowHandle);
+                     oBrowser.findElement(new By.ByTagName("body")).sendKeys(Keys.TAB);
+                  }
+               }
+            }
+         }
+
+
+         driverUtil.waitFor(obj.getDelayMillisecond());
+      } catch (UnreachableBrowserException e) {
+         manageException(obj, e);
+
+      } catch (WebDriverException ex) {
+         ScreenUtil oScreenUtil = new ScreenUtil(oBrowser);
+         oScreenUtil.makeAPrintScreen(obj.getTaskName());
+         String sMessage = "WebDriver Exception in page: " + oBrowser.getCurrentUrl() + " for 'Click'. Request " + obj.toString();
+         oLogger.error(sMessage);
+         oResult = setResult(false, false, sMessage);
+      } catch (RuntimeException ex) {
+         ScreenUtil oScreenUtil = new ScreenUtil(oBrowser);
+         oScreenUtil.makeAPrintScreen(obj.getTaskName());
+         String sMessage = ex.getMessage();
+         oLogger.error(sMessage);
+         throw new EHandlerException(EHandlerException.HandlerErrorCode.ACTION_TASK, sMessage, ex);
+      }
+
+      return oResult;
+   }
+
+   @Override
+   public ICommandResult setDatesJs(ICommandRequestDTO obj) throws EHandlerException {
+
+      ATaskResultDTO oResult = null;
+      String formattedDate = "";
+      try {
+         try {
+            JavascriptExecutor js = (JavascriptExecutor) oBrowser;
+            String dateFormatScript = "var output = $('#" + obj.getLocationElement() + "').datepicker( \"option\", \"dateFormat\" ); return output;";
+            String dateFormat = (js.executeScript(dateFormatScript)).toString();
+            dateFormat = dateFormat.replace("y", "yy");
+            dateFormat = dateFormat.replace("m", "M");
+
+//            SimpleDateFormat df = new SimpleDateFormat(dateFormat);
+//            Date date = new Date(DateUtil.getDataValue(obj.getValue(), dateFormat));
+//            String formattedDate = df.format(date);
+
+            formattedDate = DateUtil.getDataValue(obj.getValue(), dateFormat);            
+            String script = "$('#" + obj.getLocationElement() + "').datepicker(\"setDate\", \"" + formattedDate + "\")";
+
+            js.executeScript(script);
+            
+         } catch (UnreachableBrowserException e) {
+            manageException(obj, e);
+         } catch (StaleElementReferenceException e) {
+            manageException(obj, e);
+         }
+
+         oResult = setResult(true, false, "Set Dates Operation Executed");
+         obj.setValue(formattedDate);
+         printRequest(obj);
+         try {
+            Thread.sleep(lDelayonChangeClick);
+         } catch (InterruptedException ex) {
+         }
+
+         driverUtil.waitFor(obj.getDelayMillisecond());
+
+      } catch (WebDriverException ex) {
+         ScreenUtil oScreenUtil = new ScreenUtil(oBrowser);
+         oScreenUtil.makeAPrintScreen(obj.getTaskName());
+         String sMessage = "WebDriver Exception in page: " + oBrowser.getCurrentUrl() + " for 'Set Dates'. Request " + obj.toString();
+         oLogger.error(sMessage);
+         oResult = setResult(false, false, sMessage);
+      } catch (RuntimeException ex) {
+         ScreenUtil oScreenUtil = new ScreenUtil(oBrowser);
+         oScreenUtil.makeAPrintScreen(obj.getTaskName());
+         String sMessage = ex.getMessage();
+         oLogger.error(sMessage);
+         throw new EHandlerException(EHandlerException.HandlerErrorCode.ACTION_TASK, sMessage, ex);
+      }
+
+      return oResult;
+   }
+
+   /**
+    *
+    * @param obj The locatorType allowed are only name and id
+    * @return
+    * @throws AException
+    */
+   public ICommandResult selectValueJs(ICommandRequestDTO obj) throws AException {
+      ATaskResultDTO oResult = null;
+
+      try {
+         try {
+            String scriptToExecute = "";
+            JavascriptExecutor jsExec = (JavascriptExecutor) oBrowser;
+            if ("name".equalsIgnoreCase(obj.getLocatorType())) {
+               scriptToExecute = "var a = document.getElementsByName('" + obj.getLocationElement() + "'); a[0].value='" + obj.getValue() + "'";
+            } else if ("id".equalsIgnoreCase(obj.getLocatorType())) {
+               scriptToExecute = "document.getElementById('" + obj.getLocationElement() + "').value='" + obj.getValue() + "'";
+            } else {
+               throw new EHandlerException("LocatorType " + obj.getLocatorType() + " not supported");
+            }
+            jsExec.executeScript(scriptToExecute);
+
+
+         } catch (StaleElementReferenceException e) {
+            manageException(obj, e);
+         }
+
+         printRequest(obj);
+         driverUtil.waitFor(obj.getDelayMillisecond());
+      } catch (UnreachableBrowserException e) {
+         manageException(obj, e);
+
+      } catch (WebDriverException ex) {
+         ScreenUtil oScreenUtil = new ScreenUtil(oBrowser);
+         oScreenUtil.makeAPrintScreen(obj.getTaskName());
+         String sMessage = "WebDriver Exception in page: " + oBrowser.getCurrentUrl() + " for 'Select Value'. Request " + obj.toString();
+         oLogger.error(sMessage);
+         oResult = setResult(false, false, sMessage);
+      } catch (RuntimeException ex) {
+         ScreenUtil oScreenUtil = new ScreenUtil(oBrowser);
+         oScreenUtil.makeAPrintScreen(obj.getTaskName());
+         String sMessage = ex.getMessage();
+         oLogger.error(sMessage);
+         throw new EHandlerException(EHandlerException.HandlerErrorCode.ACTION_TASK, sMessage, ex);
+      }
+
+      if (oResult == null) {
+         oResult = setResult(true, false, "Select Value Action Executed");
+      }
+
+      return oResult;
+   }
+
+   public ICommandResult selectJs(ICommandRequestDTO obj) throws AException {
+      ATaskResultDTO oResult = null;
+
+      try {
+         try {
+            String scriptToExecute = "";
+            JavascriptExecutor jsExec = (JavascriptExecutor) oBrowser;
+
+            if ("name".equalsIgnoreCase(obj.getLocatorType())) {
+               scriptToExecute = "var oSelect =  document.getElementsByName('" + obj.getLocationElement() + "')[0];for (var i = 0; i<oSelect.options.length; i++) {if (oSelect.options[i].text== '" + obj.getValue() + "') {oSelect.options[i].selected=true;return;}}";
+            } else if ("id".equalsIgnoreCase(obj.getLocatorType())) {
+               scriptToExecute = "var oSelect = document.getElementById('" + obj.getLocationElement() + "');for (var i = 0; i<oSelect.options.length; i++) {if (oSelect.options[i].text== '" + obj.getValue() + "') {oSelect.options[i].selected=true;return;}}";
+            } else {
+               throw new EHandlerException("LocatorType " + obj.getLocatorType() + " not supported");
+
+            }
+            jsExec.executeScript(scriptToExecute);
+
+
+         } catch (StaleElementReferenceException e) {
+            manageException(obj, e);
+         }
+
+         printRequest(obj);
+         driverUtil.waitFor(obj.getDelayMillisecond());
+      } catch (UnreachableBrowserException e) {
+         manageException(obj, e);
+
+      } catch (WebDriverException ex) {
+         ScreenUtil oScreenUtil = new ScreenUtil(oBrowser);
+         oScreenUtil.makeAPrintScreen(obj.getTaskName());
+         String sMessage = "WebDriver Exception in page: " + oBrowser.getCurrentUrl() + " for 'Select Value'. Request " + obj.toString();
+         oLogger.error(sMessage);
+         oResult = setResult(false, false, sMessage);
+      } catch (RuntimeException ex) {
+         ScreenUtil oScreenUtil = new ScreenUtil(oBrowser);
+         oScreenUtil.makeAPrintScreen(obj.getTaskName());
+         String sMessage = ex.getMessage();
+         oLogger.error(sMessage);
+         throw new EHandlerException(EHandlerException.HandlerErrorCode.ACTION_TASK, sMessage, ex);
+      }
+
+      if (oResult == null) {
+         oResult = setResult(true, false, "Select Value Action Executed");
+      }
+
+      return oResult;
+   }
+   
+   public ICommandResult selecByPositiontJs(ICommandRequestDTO obj) throws AException {
+      ATaskResultDTO oResult = null;
+
+      try {
+         try {
+            String scriptToExecute = "";
+            JavascriptExecutor jsExec = (JavascriptExecutor) oBrowser;
+
+            if ("name".equalsIgnoreCase(obj.getLocatorType())) {
+               scriptToExecute = "var oSelect =  document.getElementsByName('" + obj.getLocationElement() + "')[0];oSelect.options["+obj.getValue()+"].selected=true;";
+                       
+            } else if ("id".equalsIgnoreCase(obj.getLocatorType())) {
+               scriptToExecute = "var oSelect = document.getElementById('" + obj.getLocationElement() + "');oSelect.options["+obj.getValue()+"].selected=true;";
+                       
+            } else {
+               throw new EHandlerException("LocatorType " + obj.getLocatorType() + " not supported");
+
+            }
+            jsExec.executeScript(scriptToExecute);
+
+
+         } catch (StaleElementReferenceException e) {
+            manageException(obj, e);
+         }
+
+         printRequest(obj);
+         driverUtil.waitFor(obj.getDelayMillisecond());
+      } catch (UnreachableBrowserException e) {
+         manageException(obj, e);
+
+      } catch (WebDriverException ex) {
+         ScreenUtil oScreenUtil = new ScreenUtil(oBrowser);
+         oScreenUtil.makeAPrintScreen(obj.getTaskName());
+         String sMessage = "WebDriver Exception in page: " + oBrowser.getCurrentUrl() + " for 'Select Value'. Request " + obj.toString();
+         oLogger.error(sMessage);
+         oResult = setResult(false, false, sMessage);
+      } catch (RuntimeException ex) {
+         ScreenUtil oScreenUtil = new ScreenUtil(oBrowser);
+         oScreenUtil.makeAPrintScreen(obj.getTaskName());
+         String sMessage = ex.getMessage();
+         oLogger.error(sMessage);
+         throw new EHandlerException(EHandlerException.HandlerErrorCode.ACTION_TASK, sMessage, ex);
+      }
+
+      if (oResult == null) {
+         oResult = setResult(true, false, "Select Value Action Executed");
+      }
+
+      return oResult;
+   }
+   
+      public ICommandResult rotate(ICommandRequestDTO obj) throws EHandlerException {
+
+      ATaskResultDTO oResult = null;
+
+      try {
+         String sOrientation = obj.getValue();
+         try {
+            
+            WebDriver augmentedDriver = new Augmenter().augment(oBrowser);
+            ((Rotatable) augmentedDriver).rotate("landscape".equalsIgnoreCase(sOrientation)?ScreenOrientation.LANDSCAPE:ScreenOrientation.PORTRAIT); 
+
+         } catch (UnreachableBrowserException e) {
+            manageException(obj, e);
+         } catch (StaleElementReferenceException e) {
+            manageException(obj, e);
+         }
+
+         oResult = setResult(true, false, "Rotation to "+sOrientation.toUpperCase()+" executed");
+         printRequest(obj);
+         try {
+            Thread.sleep(lDelayonChangeClick);
+         } catch (InterruptedException ex) {
+         }
+
+      } catch (WebDriverException ex) {
+         ScreenUtil oScreenUtil = new ScreenUtil(oBrowser);
+         oScreenUtil.makeAPrintScreen(obj.getTaskName());
+         String sMessage = "WebDriver Exception in page: " + oBrowser.getCurrentUrl() + " for 'Click'. Request " + obj.toString();
+         oLogger.error(sMessage);
+         oResult = setResult(false, false, sMessage);
+      } catch (RuntimeException ex) {
+         ScreenUtil oScreenUtil = new ScreenUtil(oBrowser);
+         oScreenUtil.makeAPrintScreen(obj.getTaskName());
+         String sMessage = ex.getMessage();
+         oLogger.error(sMessage);
+         throw new EHandlerException(EHandlerException.HandlerErrorCode.ACTION_TASK, sMessage, ex);
+      }
+
+      return oResult;
+   }
+      
+   public ICommandResult openAndroidMenu(ICommandRequestDTO obj) throws EHandlerException {
+
+      ATaskResultDTO oResult = null;
+
+//      try {
+//
+//         new Actions(oBrowser).sendKeys(SelendroidKeys.MENU).perform();
+//
+//
+//         oResult = setResult(true, false, "open MENU Operation Executed");
+//         printRequest(obj);
+//
+//
+//         waitFor(obj.getDelayMillisecond());
+//
+//      } catch (WebDriverException ex) {
+//         ScreenUtil oUtil = new ScreenUtil(oBrowser);
+//         oUtil.makeAPrintScreen(obj.getTaskName());
+//         String sMessage = "No Element Found in page: " + oBrowser.getCurrentUrl() + " for 'Click'. Request " + obj.toString();
+//         oLogger.error(sMessage);
+//         oResult = setResult(false, false, sMessage);
+//      } catch (RuntimeException ex) {
+//         ScreenUtil oUtil = new ScreenUtil(oBrowser);
+//         oUtil.makeAPrintScreen(obj.getTaskName());
+//         String sMessage = ex.getMessage();
+//         oLogger.error(sMessage);
+//         throw new EHandlerException(EHandlerException.HandlerErrorCode.ACTION_TASK, sMessage, ex);
+//      }
+
+      return oResult;
+   }
+
+   public ICommandResult androidBack(ICommandRequestDTO obj) throws EHandlerException {
+
+      ATaskResultDTO oResult = null;
+//
+//      try {
+//         
+//         new Actions(oBrowser).sendKeys(SelendroidKeys.BACK).perform();
+//
+//
+//         oResult = setResult(true, false, "BACK Operation Executed");
+//         printRequest(obj);
+//
+//
+//         waitFor(obj.getDelayMillisecond());
+//
+//      } catch (WebDriverException ex) {
+//         ScreenUtil oUtil = new ScreenUtil(oBrowser);
+//         oUtil.makeAPrintScreen(obj.getTaskName());
+//         String sMessage = "No Element Found in page: " + oBrowser.getCurrentUrl() + " for 'Click'. Request " + obj.toString();
+//         oLogger.error(sMessage);
+//         oResult = setResult(false, false, sMessage);
+//      } catch (RuntimeException ex) {
+//         ScreenUtil oUtil = new ScreenUtil(oBrowser);
+//         oUtil.makeAPrintScreen(obj.getTaskName());
+//         String sMessage = ex.getMessage();
+//         oLogger.error(sMessage);
+//         throw new EHandlerException(EHandlerException.HandlerErrorCode.ACTION_TASK, sMessage, ex);
+//      }
+
+      return oResult;
+   }   
+   
+}

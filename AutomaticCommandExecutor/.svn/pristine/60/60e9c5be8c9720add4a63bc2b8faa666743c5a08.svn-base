@@ -1,0 +1,32 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.venere.ace.utility;
+
+/**
+ *
+ * @author fcastaldi
+ */
+public class Constants {
+   //conditions
+
+   public static final String CONDITION_TAG = "condition";
+   public static final String CONDITION_NAME = "name";
+   public static final String CONDITION_ID = "id";
+   public static final String CONDITION_ATTRIBUTE = "attribute";
+   public static final String CONDITION_TYPE = "type";
+   public static final String CONDITION_TYPE_ACTION = "action";
+   public static final String CONDITION_TYPE_METAPLAN = "metaplan";
+   public static final String CONDITION_STOP = "STOP";
+   public static final String CONDITION_SKIP = "SKIP";
+   public static final String CONDITION_REPEAT = "REPEAT";
+   public static final String EQUALS_TAG = "=";
+   public static final String PAIR_PROPERTIES_SEPARATOR = ",";
+   public static final String PREFIX_PROPERTIES = "com.venere.ace.";
+   public static final String PROPERTIES_TAG = "properties:";   
+   public static final String TYPOLOGY_PROPERTY = "com.venere.ace.typology";
+   public static final String COMPARATION_EQUALS = "equals";
+   public static final String COMPARATION_CONTAINED = "contained";
+   public static final String CHECKS_SEPARATOR = "&&";
+}

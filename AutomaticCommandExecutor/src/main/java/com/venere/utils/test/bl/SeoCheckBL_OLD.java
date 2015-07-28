@@ -1,0 +1,246 @@
+/*                   Copyright (c) 2007 Venere Net S.p.A.
+ *                             All Rights Reserved
+ *
+ * This software is the confidential and proprietary information of
+ * Venere Net S.p.A. ("Confidential  Information"). You  shall not disclose
+ * such  Confidential Information and shall use it only in accordance with
+ * the terms  of the license agreement you entered into with Venere Net S.p.A.
+ *
+ * VENERE NET S.P.A. MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY
+ * OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+ * OR NON-INFRINGEMENT. VENERE NET S.P.A. SHALL NOT BE LIABLE FOR ANY DAMAGES
+ * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS
+ * SOFTWARE OR ITS DERIVATIVES.
+ */
+package com.venere.utils.test.bl;
+
+import com.venere.ace.dtos.ATaskResultDTO;
+import com.venere.ace.exception.EHandlerException;
+import com.venere.ace.idtos.ITestRequestDTO;
+import com.venere.ace.interfaces.ICommandResult;
+import com.venere.utils.dto.PageDTO;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+import org.htmlcleaner.ContentNode;
+import org.htmlcleaner.HtmlCleaner;
+import org.htmlcleaner.TagNode;
+import org.knallgrau.utils.textcat.TextCategorizer;
+
+/**
+ *
+ * @author quatrini
+ */
+public class SeoCheckBL_OLD extends AClassTestBL {
+
+   private Map oMapLanguages = new HashMap<String, String>() {
+
+      {
+         put("english", "en");
+         put("french", "fr");
+         put("spanish", "es");
+         put("german", "de");
+         put("italian", "it");
+
+      }
+   };
+   private String sTitleElement = "//title";
+   private String sMetaTagRobots = "//meta[@content='noindex,follow']";
+   private String sMetaTagDescription = "//meta[@name='Description']";
+   private String sMetaTagCanonical = "//link[@rel='canonical']";
+   private String sDescriptionBody = "//div[@id='hotel-description-body']";
+   String sPrintScreenFilePath;
+   private HtmlCleaner oHcleaner;
+   private ITestRequestDTO oTest;
+
+   public SeoCheckBL_OLD() {
+      super("SeoCheckBL");
+      oHcleaner = new HtmlCleaner();
+   }
+
+   public Map<String, Object> getMapResultContainer() {
+      return oMapResultContainer;
+   }
+
+   public ICommandResult checkTitle(ITestRequestDTO oTest) throws EHandlerException {
+      ATaskResultDTO oResult = new ATaskResultDTO("SeoCheckTaskResult");
+      oResult.setIsCorrect(false);
+      String sElementPageToCheck = (String) oTest.getInputDataList().get(0);
+      Object[] oTitles = getContents(sElementPageToCheck, sTitleElement);
+      if (oTitles.length == 1) {
+         PageDTO oP = (PageDTO) oMapResultContainer.get(sElementPageToCheck);
+         checkUrlvsTitle(oP.getOriginUrl(), ((TagNode) oTitles[0]).getChildren().get(0).toString());
+         oResult.setIsCorrect(true);
+      }
+      oLogger.error("checkTitle : " + oResult.isCorrect());
+      oResult.setMessage("SEO Check Done");
+      return oResult;
+   }
+
+   public ICommandResult checkMetaTag(ITestRequestDTO oTest) throws EHandlerException {
+      this.oTest = oTest;
+      ATaskResultDTO oResult = new ATaskResultDTO("SeoCheckTaskResult");
+      oResult.setIsCorrect(false);
+      String sElementPageToCheck = (String) oTest.getInputDataList().get(0);
+      Object[] oMetaTagsRobot = getContents(sElementPageToCheck, sMetaTagRobots);
+      PageDTO oP = (PageDTO) oMapResultContainer.get(sElementPageToCheck);
+      boolean boHaveQueryString = (oP.getOriginUrl().getQuery() != null);
+      boolean boSameLg = checkDescriptionLgVsUrlLg();
+      if (oMetaTagsRobot.length == 1) {
+         oResult.setIsCorrect(true);
+         if (!boHaveQueryString) {
+            oResult.setIsCorrect(!boSameLg);
+         }
+      } else {
+         oResult.setIsCorrect(true);
+         if (boHaveQueryString || !boSameLg) {
+            oResult.setIsCorrect(false);
+         }
+      }
+
+      oResult.setMessage("SEO Check Done");
+      oLogger.error("checkMetaTag : " + oResult.isCorrect());
+      return oResult;
+   }
+
+   public ICommandResult checkDescription(ITestRequestDTO oTest) throws EHandlerException {
+      ATaskResultDTO oResult = new ATaskResultDTO("SeoCheckTaskResult");
+      oResult.setIsCorrect(false);
+      String sElementPageToCheck = (String) oTest.getInputDataList().get(0);
+      Object[] oMetaTagsRobot = getContents(sElementPageToCheck, sMetaTagDescription);
+      if (oMetaTagsRobot.length == 0) {
+         oMetaTagsRobot = getContents(sElementPageToCheck, sMetaTagDescription.toLowerCase());
+      }
+
+      if (oMetaTagsRobot.length == 1) {
+         oResult.setIsCorrect(checkExistensDescription(((TagNode) oMetaTagsRobot[0]).getAttributes().get("content")));
+      }
+
+      oResult.setMessage("Description Check " + (oResult.isCorrect() ? "Done" : "Failure. Missing Tag"));
+      oLogger.error("checkDescription : " + oResult.isCorrect());
+      return oResult;
+   }
+
+   public ICommandResult checkCanonicalTag(ITestRequestDTO oTest) throws EHandlerException {
+      ATaskResultDTO oResult = new ATaskResultDTO("SeoCheckTaskResult");
+      oResult.setIsCorrect(false);
+      String sElementPageToCheck = (String) oTest.getInputDataList().get(0);
+      Object[] oMetaTagsRobot = getContents(sElementPageToCheck, sMetaTagCanonical);
+      if (oMetaTagsRobot.length == 0) {
+         oMetaTagsRobot = getContents(sElementPageToCheck, sMetaTagCanonical.toLowerCase());
+      }
+
+      String sCanonicalURL = "NOT PRESENT ";
+      PageDTO oPageDTO = (PageDTO) oMapResultContainer.get(sElementPageToCheck);
+      URL oURLtoCheck = oPageDTO.getOriginUrl();
+
+      if (oMetaTagsRobot.length == 1) {
+         sCanonicalURL = ((TagNode) oMetaTagsRobot[0]).getAttributes().get("content");
+         oResult.setIsCorrect(sCanonicalURL.equals(oURLtoCheck.getHost() + oURLtoCheck.getPath()));
+      }
+
+      oResult.setMessage("Canonical Check " + (oResult.isCorrect() ? "Done" : "Failure Expected :" + oURLtoCheck.getHost() + oURLtoCheck.getPath() + " but found :" + sCanonicalURL));
+      return oResult;
+   }
+
+   private boolean requireNoIndexFollow() {
+      boolean boResult = true;
+
+
+      return boResult;
+   }
+
+   private Object[] getContents(String sElementPage, String sXpathElementtoGet) throws EHandlerException {
+
+      Object[] oResults = null;
+      try {
+         PageDTO oPageDTO = (PageDTO) oMapResultContainer.get(sElementPage);
+//       CODE TO SAVE PAGE HTML     //
+//       FileWriter out = new FileWriter ("/home.local/quatrini/"+oPageDTO.getOriginUrl().toString().replace("/", "_")+System.currentTimeMillis()+".txt");
+//       out.write(oPageDTO.getPageHtml());
+//       out.close();
+         sPrintScreenFilePath = oPageDTO.getPrintScreenPath();
+         TagNode oT = oHcleaner.clean(oPageDTO.getPageHtml());
+         oResults = oT.evaluateXPath(sXpathElementtoGet);
+      } catch (Exception ex) {
+         String sMessage = ex.getMessage();
+         throw new EHandlerException(EHandlerException.HandlerErrorCode.ACTION_TASK, sMessage, ex);
+      }
+      return oResults;
+
+   }
+
+   private void checkUrlvsTitle(URL oUrl, String sTitle) {
+
+      String[] sUrlComponets = oUrl.getPath().split("/");
+      if (sUrlComponets.length > 1) {
+         String sLastChild = sUrlComponets[sUrlComponets.length - 1].replace("-", " ").toLowerCase();
+         if (!sTitle.toLowerCase().contains(sLastChild)) {
+            oLogger.warn("Title present but may be wrong. Current Url :" + oUrl.toString() + " and title " + sTitle);
+         }
+      }
+   }
+
+   private boolean checkExistensDescription(String sDescription) {
+      return !sDescription.isEmpty();
+   }
+
+   private boolean checkUrlLanguage(URL sOriginUrl, String sLanguage) {
+      boolean boResult = false;
+
+      if (sLanguage.equals("en")) {
+         String[] sPathElement = sOriginUrl.getPath().split("/");
+         if (sPathElement.length > 2) {
+            boResult |= (sPathElement[1].length() != 2);
+         }
+      } else {
+         boResult |= !sOriginUrl.getPath().contains("/" + sLanguage + "/");
+      }
+
+
+      return boResult;
+   }
+
+   private boolean checkDescriptionLgVsUrlLg() throws EHandlerException {
+      boolean boResult = false;
+      String sKeyMap = (String) oTest.getInputDataList().get(0);
+      Object[] oR = getContents(sKeyMap, sDescriptionBody);
+      if (oR.length != 0) {
+         StringBuilder sDescriptionText = ((ContentNode) ((TagNode) oR[0]).getChildren().get(0)).getContent();
+         TextCategorizer oLanguageReognizer = new TextCategorizer();
+         String sLanguage = (String) oMapLanguages.get(oLanguageReognizer.categorize(sDescriptionText.toString()));
+         PageDTO oP = (PageDTO) oMapResultContainer.get(sKeyMap);
+         boResult |= checkUrlLanguage(oP.getOriginUrl(), sLanguage);
+      } else {
+         boResult = true;
+         oLogger.error("No Tag Body found  into text for this url " + ((PageDTO) oMapResultContainer.get(sKeyMap)).getOriginUrl().toString());
+      }
+
+      return boResult;
+   }
+
+   public ICommandResult checkLinks(ITestRequestDTO oTestRequest) throws EHandlerException {
+      ATaskResultDTO oResult = new ATaskResultDTO("SeoCheckTaskResult");
+      oResult.setIsCorrect(true);
+      String sElementPageToCheck = (String) oTestRequest.getInputDataList().get(0);
+      String sXpathLinksToCheck = (String) oTestRequest.getInputDataList().get(1);
+      String sStartLinks = (String) oTestRequest.getInputDataList().get(2);
+      Object[] oR = getContents(sElementPageToCheck, sXpathLinksToCheck);
+      oResult.setFilePrintScreen(sPrintScreenFilePath);
+      for (Object oB1 : oR) {
+         TagNode oTag = (TagNode) oB1;
+         String sUrl = oTag.getAttributeByName("href");
+         System.out.println(sUrl);
+         if (!sUrl.startsWith(sStartLinks)) {
+            oResult.setIsCorrect(false);
+            oResult.setMessage("Expected Starting url " + sStartLinks + " but found :" + sUrl);
+         }
+
+      }
+
+
+      return oResult;
+
+   }
+}

@@ -1,0 +1,99 @@
+/*                   Copyright (c) 2007 Venere Net S.p.A.
+ *                             All Rights Reserved
+ *
+ * This software is the confidential and proprietary information of
+ * Venere Net S.p.A. ("Confidential  Information"). You  shall not disclose
+ * such  Confidential Information and shall use it only in accordance with
+ * the terms  of the license agreement you entered into with Venere Net S.p.A.
+ *
+ * VENERE NET S.P.A. MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY
+ * OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+ * OR NON-INFRINGEMENT. VENERE NET S.P.A. SHALL NOT BE LIABLE FOR ANY DAMAGES
+ * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS
+ * SOFTWARE OR ITS DERIVATIVES.
+ */
+
+package com.venere.utils.test.bl;
+
+import com.venere.utils.dto.PageDTO;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ *
+ * @author quatrini
+ */
+public class DataCreatorInput {
+   private Map oMap;
+    
+   private String getFileContentFile(String sFileName) throws FileNotFoundException, IOException{
+      StringBuilder fileData = new StringBuilder(1000);
+      InputStreamReader oReader = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream(sFileName));
+   
+      char[] buf = new char[1024];
+      int numRead=0;
+      while((numRead=oReader.read(buf)) != -1){
+          String readData = String.valueOf(buf, 0, numRead);
+          fileData.append(readData);
+          buf = new char[1024];
+      }
+      oReader.close();
+      
+      return fileData.toString();
+   }
+   
+   
+   
+   
+   
+   private String getFileContent(String sFilePath) throws FileNotFoundException, IOException{
+      StringBuilder fileData = new StringBuilder(1000);
+      BufferedReader reader  = new BufferedReader(new FileReader(sFilePath));
+      char[] buf = new char[1024];
+      int numRead=0;
+      while((numRead=reader.read(buf)) != -1){
+          String readData = String.valueOf(buf, 0, numRead);
+          fileData.append(readData);
+          buf = new char[1024];
+      }
+      reader.close();
+      
+      return fileData.toString();
+   }
+   
+   public Map positiveData() throws FileNotFoundException, IOException{
+      oMap = new HashMap();
+      PageDTO oActualDTO = new PageDTO();
+      oActualDTO.setPageHtml(getFileContentFile("actual1307436548622.txt"));
+      oMap.put("actual", oActualDTO);
+      PageDTO oExpected  = new PageDTO();
+      oExpected.setPageHtml(getFileContentFile("excepted1307436548714.txt"));
+      oMap.put("excepted", oExpected);
+      return oMap;
+      
+   }
+   
+   public Map addPositiveData(String sKey, String sPathFile) throws FileNotFoundException, IOException{
+      if(oMap ==null){
+         oMap = new HashMap();
+      }
+      
+      PageDTO oActualDTO = new PageDTO();
+      oActualDTO.setPageHtml(getFileContentFile(sPathFile));
+      oMap.put(sKey, oActualDTO);
+      return oMap;
+      
+   }
+   
+   
+   
+
+   
+}
+

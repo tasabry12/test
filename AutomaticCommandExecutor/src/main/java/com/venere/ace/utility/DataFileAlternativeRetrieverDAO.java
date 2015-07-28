@@ -1,0 +1,88 @@
+/*                   Copyright (c) 2007 Venere Net S.p.A.
+ *                             All Rights Reserved
+ *
+ * This software is the confidential and proprietary information of
+ * Venere Net S.r.l. ("Confidential  Information"). You  shall not disclose
+ * such  Confidential Information and shall use it only in accordance with
+ * the terms  of the license agreement you entered into with Venere Net S.p.A.
+ *
+ * VENERE NET S.r.l. MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY
+ * OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+ * OR NON-INFRINGEMENT. VENERE NET S.P.A. SHALL NOT BE LIABLE FOR ANY DAMAGES
+ * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS
+ * SOFTWARE OR ITS DERIVATIVES.
+ */
+package com.venere.ace.utility;
+
+import com.venere.ace.dtos.DataAlternativeRequestDTO;
+import com.venere.ace.dtos.DataAlternativeResponseDTO;
+import com.venere.ace.dtos.DataHotelDTO;
+import com.venere.ace.interfaces.IDataAlternativeRetriever;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+/**
+ *
+ * @author cquatrini
+ */
+public class DataFileAlternativeRetrieverDAO implements IDataAlternativeRetriever {
+
+   private Map oAlternativeHotels;
+
+   public Map getAlternativeHotels() {
+      return oAlternativeHotels;
+   }
+
+   public void setAlternativeHotels(Map oAlternativeHotels) {
+      this.oAlternativeHotels = oAlternativeHotels;
+   }
+
+   @Override
+   public DataAlternativeResponseDTO getSameHotelTypology(DataAlternativeRequestDTO oDataAlternativeRequestDTO) {
+
+      String sHotelTypology = oDataAlternativeRequestDTO.getTypology();
+      String[] oDataHotel = ((String) oAlternativeHotels.get(sHotelTypology)).split(",");
+      DataAlternativeResponseDTO oResponse = new DataAlternativeResponseDTO();
+      List<String> oBlackList = oDataAlternativeRequestDTO.getBlackListHotel();
+      DataHotelDTO oSingleDataHotel = new DataHotelDTO();
+      for (String sBlackListHotel : oDataHotel) {
+         String[] sSPlittedPairHotel = sBlackListHotel.split(":");
+         if (!oBlackList.contains(sSPlittedPairHotel[1])) {
+            oSingleDataHotel.setHotelTypology(sHotelTypology);
+            oSingleDataHotel.setDestination(sSPlittedPairHotel[0]);
+            oSingleDataHotel.setHotelName(sSPlittedPairHotel[1]);
+            break;
+         }
+      }
+      oResponse.setAlternativeHotel(oSingleDataHotel);
+
+      return oResponse;
+   }
+
+   @Override
+   public DataAlternativeResponseDTO getSameHotelsTypologyList(DataAlternativeRequestDTO oDataAlternativeRequestDTO) {
+
+      String sHotelTypology = oDataAlternativeRequestDTO.getTypology();
+      String[] oDataHotel = ((String) oAlternativeHotels.get(sHotelTypology)).split(",");
+      List<DataHotelDTO> oListHotelsAvailable = new ArrayList<DataHotelDTO>();
+      DataAlternativeResponseDTO oResponse = new DataAlternativeResponseDTO();
+      List<String> oBlackList = oDataAlternativeRequestDTO.getBlackListHotel();
+
+      for (String sBlackListHotel : oDataHotel) {
+         String[] sSPlittedPairHotel = sBlackListHotel.split(":");
+         if (!oBlackList.contains(sSPlittedPairHotel[1])) {
+            DataHotelDTO oSingleDataHotel = new DataHotelDTO();
+            oSingleDataHotel.setHotelTypology(sHotelTypology);
+            oSingleDataHotel.setDestination(sSPlittedPairHotel[0]);
+            oSingleDataHotel.setHotelName(sSPlittedPairHotel[1]);
+            oListHotelsAvailable.add(oSingleDataHotel);
+
+         }
+      }
+      oResponse.setAlternativeDataHotels(oListHotelsAvailable);
+
+      return oResponse;
+   }
+}

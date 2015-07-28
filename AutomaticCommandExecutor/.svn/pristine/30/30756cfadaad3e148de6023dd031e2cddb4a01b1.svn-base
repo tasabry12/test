@@ -1,0 +1,92 @@
+/*                   Copyright (c) 2007 Venere Net S.p.A.
+ *                             All Rights Reserved
+ *
+ * This software is the confidential and proprietary information of
+ * Venere Net S.p.A. ("Confidential  Information"). You  shall not disclose
+ * such  Confidential Information and shall use it only in accordance with
+ * the terms  of the license agreement you entered into with Venere Net S.p.A.
+ *
+ * VENERE NET S.P.A. MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY
+ * OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+ * OR NON-INFRINGEMENT. VENERE NET S.P.A. SHALL NOT BE LIABLE FOR ANY DAMAGES
+ * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS
+ * SOFTWARE OR ITS DERIVATIVES.
+ */
+package com.venere.ace;
+
+import com.venere.mvtproperties.TestSuiteGenerator;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+/**
+ *
+ * @author quatrini
+ */
+public class UseJenny {
+
+   protected Log oLogger = LogFactory.getLog(getClass());
+
+   public static void main(String[] args) {
+
+      String  sSuitePath    = null ;
+      boolean boCorrectArgs = false;
+      boolean boGenMvtSuite = false;
+      
+      String sBrowserSelect = System.getProperty("com.venere.ace.browserSelect");
+      if(sBrowserSelect!=null && (sBrowserSelect.equalsIgnoreCase("androidBrowser")||sBrowserSelect.equalsIgnoreCase("iphoneBrowser"))){
+         System.setProperty("com.venere.ace.platform","Mobile");      
+      }else if(sBrowserSelect!=null && (sBrowserSelect.equalsIgnoreCase("androidAppBrowser"))){
+         System.setProperty("com.venere.ace.platform","App");      
+      }
+      
+      
+      String sLogFoledr = System.getProperty("com.venere.ace.logBaseFolder");
+      if (sLogFoledr == null) {
+         System.setProperty("com.venere.ace.logBaseFolder", "log");
+      }
+      
+      if (args.length > 0) {
+         for (int i = 0; i < args.length; i++) {
+            String sElementInput = args[i];
+            if (sElementInput.startsWith("testName")) {
+               String[] sSplit = sElementInput.split("=");
+               if (sSplit.length > 1) {
+                  boCorrectArgs = true;
+                  sSuitePath = sSplit[1];
+               }
+            }
+            if (sElementInput.startsWith("--genmvt")) {
+               boGenMvtSuite = true;
+
+            }
+         }
+         if (boGenMvtSuite && boCorrectArgs) {
+            ClassPathXmlApplicationContext oClass = new ClassPathXmlApplicationContext(new String[]{"spring/spring-config-mvtGen.xml"});
+            TestSuiteGenerator suiteGenerator = (TestSuiteGenerator) oClass.getBean("suiteManager");
+            sSuitePath = suiteGenerator.createSuite(sSuitePath);
+         }
+      }
+
+      if (boCorrectArgs) {
+         TestSuiteManager oTestsuiteManager = new TestSuiteManager();
+         oTestsuiteManager.startTestSuite(sSuitePath);
+      } else {
+         String sMessage = "You Need this  \n"
+                 + "        java -jar [System Properties] [switch Properties] AutomaticCommandExecutor-1.0-SNAPSHOT.jar     testName=[Test_File_Path] \n\n"
+                 + "        [Test_File_Path] = 'file path containing test to run' \n\n\n"
+                 + "        Option Properties : \n\n"
+                 + "        * -Dwebdriver.chrome.driver=C:\\chromedriver.exe only if you use Chrome you must indicate the chrome driver , or insert into Path\n"
+                 + "        * -Dcom.venere.ace.browserSelect= choice [firefoxBrowser|ieBrowser|chromeBrowser|safariBrowser] if this option missing default is firefoxBrowser  \n"
+                 + "        * -Dwebdriver.firefox.bin=Locationof Firefo Bin  not required  \n\n\n"
+                 + "        Switch Properties : \n\n"
+                 + "        * --genmvt : this switch allow you to generate Suite Properties starting to file Gen, see the documentation. \n"
+                 + "        Example: 1) java -jar -Dcom.venere.ace.browserSelect=firefoxBrowser  AutomaticCommandExecutor-1.0-SNAPSHOT.jar  testName=/home.local/quatrini/starterGreatGeneralProperties.properties    \n"
+                 + "        Example: 2) java -jar -Dcom.venere.ace.browserSelect=firefoxBrowser --genmvt AutomaticCommandExecutor-1.0-SNAPSHOT.jar  testName=/home.local/quatrini/SuiteGenerator.properties    \n";
+
+         System.out.println(sMessage);
+      }
+      System.exit(0);
+   }
+}

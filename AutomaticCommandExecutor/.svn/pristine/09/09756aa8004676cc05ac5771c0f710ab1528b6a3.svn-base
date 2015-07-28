@@ -1,0 +1,235 @@
+/*                   Copyright (c) 2007 Venere Net S.p.A.
+ *                             All Rights Reserved
+ *
+ * This software is the confidential and proprietary information of
+ * Venere Net S.p.A. ("Confidential  Information"). You  shall not disclose
+ * such  Confidential Information and shall use it only in accordance with
+ * the terms  of the license agreement you entered into with Venere Net S.p.A.
+ *
+ * VENERE NET S.P.A. MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY
+ * OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+ * OR NON-INFRINGEMENT. VENERE NET S.P.A. SHALL NOT BE LIABLE FOR ANY DAMAGES
+ * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS
+ * SOFTWARE OR ITS DERIVATIVES.
+ */
+package com.venere.ace.bl.loaders;
+
+import com.venere.ace.abstracts.ACommandLoader;
+import com.venere.ace.abstracts.AExecutor;
+import com.venere.ace.dtos.CheckConditionDTO;
+import com.venere.ace.dtos.MetaplanCommadRequestDTO;
+import com.venere.ace.dtos.SeleniumCommadRequestDTO;
+import com.venere.ace.dtos.TestRequestDTO;
+import com.venere.ace.exception.ELoaderIO;
+import com.venere.ace.interfaces.ICommandExecutor;
+import com.venere.ace.interfaces.ITestContainer;
+import com.venere.ace.utility.*;
+import com.venere.utils.test.bl.DiagnosticHelper;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import org.openqa.selenium.WebDriver;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+        
+
+/**
+ *
+ * @author quatrini
+ */
+public class TestClassLoader extends ACommandLoader {
+
+    private AExecutor oCurrentTask;    
+    protected Map<String, List<ICommandExecutor>> oMapPrePointsCut;
+    protected Map<String, List<ICommandExecutor>> oMapPostPointsCut;
+    private List<ICommandExecutor> oCurrentList;
+    private TestRequestDTO oCurrentTestRequest;
+    private SeleniumCommadRequestDTO oCurrentCommandRequest;
+    private WebDriver oBrowser;
+
+    public WebDriver getBrowser() {
+        return oBrowser;
+    }
+
+    public void setBrowser(WebDriver oBrowser) {
+        this.oBrowser = oBrowser;
+    }
+    private String sClassPathLoader = "com.venere.utils.test.bl";
+    private Map<String, Object> oMapResultContainer;
+
+    public Map<String, Object> getMapResultContainer() {
+        return oMapResultContainer;
+    }
+
+    public void setMapResultContainer(Map<String, Object> oMapResultContainer) {
+        this.oMapResultContainer = oMapResultContainer;
+    }
+
+    public TestClassLoader() {
+        super();
+        oMapPrePointsCut = new HashMap();
+        oMapPostPointsCut = new HashMap();
+    }
+
+    public Map getPointCutsMap() {
+        Map<String, Map<String, List<ICommandExecutor>>> oMapsPointsCut = new HashMap<String, Map<String, List<ICommandExecutor>>>();
+        oMapsPointsCut.put(EnumTestPosition.PRE.getActionCode(), oMapPrePointsCut);
+        oMapsPointsCut.put(EnumTestPosition.POST.getActionCode(), oMapPostPointsCut);
+        return oMapsPointsCut;
+    }
+
+    @Override
+    public void startElement(String namespaceURI, String localName, String qName, Attributes atts) {
+     
+        
+        if (localName.equals(Constants.CONDITION_TAG)) {
+            String sConditionName = atts.getValue(Constants.CONDITION_NAME);
+            String sConditionAttribute = atts.getValue(Constants.CONDITION_ATTRIBUTE);
+            String sConditionType = atts.getValue(Constants.CONDITION_TYPE);
+            
+            if(Constants.CONDITION_STOP.equalsIgnoreCase(sConditionName)){
+               if (Constants.CONDITION_TYPE_ACTION.equalsIgnoreCase(sConditionType)) {
+
+                  oCurrentTask = new AExecutor("PointCutTask");
+                  oCurrentTask.setHandler(oCurrentBrowser);
+                  oCurrentTask.setTaskId(EnumBrowserTask.valueOf("CLOSEALL"));
+                  oCurrentTask.setTaskDescription("ExecutionStop");
+                  oCurrentCommandRequest = new SeleniumCommadRequestDTO();
+                  oCurrentCommandRequest.setTaskName(Constants.CONDITION_STOP);
+                  oCurrentTask.setRequest(oCurrentCommandRequest);
+                  insertIntoMap(sConditionAttribute, oMapPostPointsCut);
+                  oCurrentList.add(oCurrentTask);         
+               }else if(Constants.CONDITION_TYPE_METAPLAN.equalsIgnoreCase(sConditionType)){
+
+                  ICommandExecutor oTerminateTask = new AExecutor("ScenarioTask");
+                  oTerminateTask.setTaskId(EnumScenarioTask.CLOSEALL);    
+                  oTerminateTask.setTaskDescription("ExecutionStop");
+                  MetaplanCommadRequestDTO terminateMetaplanDTO =new MetaplanCommadRequestDTO();
+                  terminateMetaplanDTO.setPropertiesFile(new Properties());
+                  terminateMetaplanDTO.setMetaplanname(Constants.CONDITION_STOP);    
+                  oTerminateTask.setRequest(terminateMetaplanDTO);
+                  oTerminateTask.setHandler(oCurrentScenarioHandler);
+                  insertIntoMap(sConditionAttribute, oMapPostPointsCut);
+                  oCurrentList.add(oTerminateTask);                
+               }
+            }else{
+                  oCurrentTask = new AExecutor("ConditionTask");
+                  prepareCheckPoint(atts,true);
+                  
+            }
+        }
+
+        if (localName.equals("pointCut")) {
+            oCurrentTask = new AExecutor("PointCutTask");
+            oCurrentTask.setHandler(oCurrentBrowser);
+            oCurrentTask.setTaskId(EnumBrowserTask.valueOf(atts.getValue("data")));
+            oCurrentTask.setTaskDescription(atts.getValue("descriptionTag"));
+            oCurrentCommandRequest = new SeleniumCommadRequestDTO();
+            oCurrentCommandRequest.setTaskName(atts.getValue("name"));
+            oCurrentTask.setRequest(oCurrentCommandRequest);
+            if (atts.getValue("when").equals("pre")) {
+                insertIntoMap(atts.getValue("position"), oMapPrePointsCut);
+            } else {
+                insertIntoMap(atts.getValue("position"), oMapPostPointsCut);
+            }
+            oCurrentList.add(oCurrentTask);
+        }
+
+        
+        if (localName.equals("checkPoint")) {
+            prepareCheckPoint(atts, false);
+        }
+
+    }
+
+   private void prepareCheckPoint(Attributes atts, boolean boIsCondition) throws ELoaderIO {
+      String sPosition = "last";
+      oCurrentTask = new AExecutor("CheckPointTask");
+      ITestContainer oCheckBL = null;
+      try {
+          oCheckBL = (ITestContainer) Class.forName(sClassPathLoader + "." + EnumClassTest.valueOf(atts.getValue("actorTest")).getActionCode()).newInstance();
+      } catch (InstantiationException ex) {
+          String sMessage = "No TEST Suite " + atts.getValue("actorTest") + " may be instatiated";
+          throw new ELoaderIO(ELoaderIO.LoaderErrorCode.TASK_UNKNOWN, sMessage, ex);
+
+      } catch (IllegalAccessException ex) {
+          String sMessage = "Permission Denied to create Test Suite " + atts.getValue("actorTest");
+          throw new ELoaderIO(ELoaderIO.LoaderErrorCode.TASK_UNKNOWN, sMessage, ex);
+      } catch (ClassNotFoundException ex) {
+          String sMessage = "Inexistent Test Suite " + atts.getValue("actorTest");
+          throw new ELoaderIO(ELoaderIO.LoaderErrorCode.TASK_UNKNOWN, sMessage, ex);
+      }
+      oCheckBL.setMapResultContainer(oMapResultContainer);
+      oCheckBL.setTestBrowser(oBrowser);
+      oCurrentTask.setHandler(oCheckBL);
+      oCurrentTask.setTaskId(EnumTestTask.valueOf(atts.getValue("actionTest")));
+      oCurrentTask.setTaskDescription(atts.getValue("descriptionTag"));
+      DiagnosticHelper oDiagnostic = new DiagnosticHelper();
+      oDiagnostic.setBrowser(oCurrentBrowser);
+      oCurrentTask.setDiagnostic(oDiagnostic);
+      oCurrentTestRequest = new TestRequestDTO();
+      oCurrentTask.setRequest(oCurrentTestRequest);
+      oCurrentTestRequest.setCheckDescription(atts.getValue("descriptionTag"));
+      oCurrentTestRequest.setMethodName(atts.getValue("actionTest"));
+      oCurrentTestRequest.setTestClassName(atts.getValue("actorTest"));
+      oCurrentTestRequest.setLocatorType(atts.getValue("locatorType")!=null?atts.getValue("locatorType"):"xpath");
+      oCurrentTestRequest.setInputDataList(getDataElement(atts.getValue("data")));
+      
+      oCurrentTestRequest.setDependOfCondition(atts.getValue("condition"));
+
+            
+      if(boIsCondition){
+         CheckConditionDTO oCondition = new CheckConditionDTO();
+         oCondition.setConditionId(atts.getValue(Constants.CONDITION_ID));
+         oCondition.setConditionDescr(atts.getValue("descriptionTag"));
+         oCurrentTestRequest.setConditionDTO(oCondition);
+      }
+      
+      
+      if (atts.getValue("position") != null) {
+          sPosition = atts.getValue("position");
+      }
+      if (atts.getValue("when") != null && atts.getValue("when").equals("pre")) {
+          insertIntoMap(sPosition, oMapPrePointsCut);
+      } else {
+          if (atts.getValue("when") != null && atts.getValue("when").equals("post")) {
+              insertIntoMap(sPosition, oMapPostPointsCut);
+          }                          
+      }
+      oCurrentList.add(oCurrentTask);
+   }
+
+    @Override
+    public void endElement(String namespaceURI,
+            String localName,
+            String qName) throws SAXException {
+    }
+
+    private void insertIntoMap(String sPosition, Map oMap) {
+        oCurrentList = (List<ICommandExecutor>) oMap.get(sPosition);
+        if (oCurrentList == null) {
+            oCurrentList = new ArrayList<>();
+            oMap.put(sPosition, oCurrentList);
+        }
+
+    }
+
+    private boolean isEmptyAttribute(String sAttributeValid) {
+        return true;
+    }
+
+   private List<String> getDataElement(String sElementData) {
+      List<String> oElementList = new ArrayList<>();
+      if (sElementData != null) {
+         List<String> oTokenList = StringUtil.pipeSplit(sElementData);
+         for (String sToken : oTokenList) {
+            oElementList.add(getValue(sToken));
+         }
+      }
+
+      return oElementList;
+   }
+}

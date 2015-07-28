@@ -1,0 +1,59 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+/*                   Copyright (c) 2007 Venere Net S.r.l.
+*                             All Rights Reserved
+*
+* This software is the confidential and proprietary information of
+* Venere Net S.r.l. ("Confidential  Information"). You  shall not disclose
+* such  Confidential Information and shall use it only in accordance with
+* the terms  of the license agreement you entered into with Venere Net S.r.l.
+*
+* VENERE NET S.r.l. MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY
+* OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+* THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+* OR NON-INFRINGEMENT. VENERE NET S.r.l. SHALL NOT BE LIABLE FOR ANY DAMAGES
+* SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS
+* SOFTWARE OR ITS DERIVATIVES.
+*/
+
+package com.venere.ace.dtos;
+
+/**
+ *
+ * @author fcastaldi
+*/
+
+public class CheckConditionDTO{
+   
+   private String sConditionId;
+   private String sConditionDescr;
+   private boolean boConditionResult;
+
+   public boolean getConditionResult() {
+      return boConditionResult;
+   }
+
+   public void setConditionResult(boolean boConditionResult) {
+      this.boConditionResult = boConditionResult;
+   }
+
+   public String getConditionDescr() {
+      return sConditionDescr;
+   }
+
+   public void setConditionDescr(String sConditionDescr) {
+      this.sConditionDescr = sConditionDescr;
+   }
+
+   public String getConditionId() {
+      return sConditionId;
+   }
+
+   public void setConditionId(String sConditionId) {
+      this.sConditionId = sConditionId;
+   }
+
+ 
+}

@@ -1,0 +1,66 @@
+/*                   Copyright (c) 2007 Venere Net S.p.A.
+ *                             All Rights Reserved
+ *
+ * This software is the confidential and proprietary information of
+ * Venere Net S.p.A. ("Confidential  Information"). You  shall not disclose
+ * such  Confidential Information and shall use it only in accordance with
+ * the terms  of the license agreement you entered into with Venere Net S.p.A.
+ *
+ * VENERE NET S.P.A. MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY
+ * OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+ * OR NON-INFRINGEMENT. VENERE NET S.P.A. SHALL NOT BE LIABLE FOR ANY DAMAGES
+ * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS
+ * SOFTWARE OR ITS DERIVATIVES.
+ */
+package com.venere.ace.abstracts;
+
+import com.venere.ace.dao.ScenarioHandler;
+import com.venere.ace.dao.WebDriverBrowser;
+import com.venere.ace.exception.ELoaderIO;
+import com.venere.ace.idtos.IConfigurationDTO;
+import com.venere.ace.interfaces.ICommandExecutor;
+import com.venere.ace.interfaces.ITaskHandler;
+import com.venere.ace.interfaces.IWaiterTaskHandler;
+import java.util.List;
+import java.util.Map;
+
+/**
+ *
+ * @author quatrini
+ */
+public abstract class ACommandLoader extends ALoader {
+
+    protected WebDriverBrowser oCurrentBrowser;
+    protected ScenarioHandler oCurrentScenarioHandler;
+    protected IWaiterTaskHandler oCurrentWaiterBrowser;
+    protected String sNameContext;
+    protected String sCurrentPropertiesFile;
+    protected Map oMapConfigurationAdds;
+
+    public void setWaitTaskHandler(IWaiterTaskHandler oWaiterHandler) {
+        oCurrentWaiterBrowser = oWaiterHandler;
+    }
+
+    public ITaskHandler getCurrentBrowser() {
+        return oCurrentBrowser;
+    }
+
+    public void setCurrentBrowser(ITaskHandler oCurrentBrowser) {
+        this.oCurrentBrowser = (WebDriverBrowser) oCurrentBrowser;
+    }
+
+    public void setCurrentScenarioHandler(ScenarioHandler oCurrentScenarioHandler) {
+        this.oCurrentScenarioHandler = oCurrentScenarioHandler;
+    }
+
+    @Override
+    public List<ICommandExecutor> load(IConfigurationDTO oConfigurationDTO) throws ELoaderIO {
+
+        oCurrentProperties = oConfigurationDTO.getMainProps();
+        oMapConfigurationAdds = oConfigurationDTO.getConfigurationAdds();
+
+        return super.load(oConfigurationDTO);
+
+    }
+}

@@ -1,0 +1,76 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.venere.utils.test.bl;
+
+import com.venere.ace.dtos.TestRequestDTO;
+import com.venere.ace.idtos.ITestRequestDTO;
+import com.venere.ace.interfaces.ICommandResult;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import junit.framework.TestCase;
+
+/**
+ *
+ * @author quatrini
+ */
+public class CheckPriceBLTest extends TestCase {
+   private DataCreatorInput oDataCreator = new DataCreatorInput();
+   
+   public CheckPriceBLTest(String testName) {
+      super(testName);
+   }
+   
+   @Override
+   protected void setUp() throws Exception {
+      super.setUp();
+   }
+   
+   @Override
+   protected void tearDown() throws Exception {
+      super.tearDown();
+   }
+
+   /**
+    * Test of checkPrice method, of class CheckPriceBL.
+    */
+   public void testCheckPrice() throws Exception {
+      System.out.println("checkPrice");
+      List oList = new ArrayList();
+      oList.add("actual");
+      oList.add("excepted");
+      
+      ITestRequestDTO oTest = new TestRequestDTO();
+      oTest.setInputDataList(oList);
+      CheckPriceBL oCheckPriceTest = new CheckPriceBL();
+      oCheckPriceTest.setMapResultContainer(oDataCreator.positiveData());
+     
+      ICommandResult result = oCheckPriceTest.checkLand(oTest);
+      assertEquals(true, result.isCorrect());
+   }
+
+   /**
+    * Test of checkLand method, of class CheckPriceBL.
+    */
+   public void testCheckLand() throws Exception {
+      System.out.println("checkLand");
+        List oList = new ArrayList();
+      oList.add("actual");
+      oList.add("excepted");
+      
+      ITestRequestDTO oTest = new TestRequestDTO();
+      oTest.setInputDataList(oList);
+      CheckPriceBL oCheckPriceTest = new CheckPriceBL();
+      Map oMap =new HashMap();
+      oCheckPriceTest.setMapResultContainer(oDataCreator.positiveData());
+     
+      ICommandResult result = oCheckPriceTest.checkLand(oTest);
+      assertEquals(true, result.isCorrect());
+
+
+   }
+   
+}

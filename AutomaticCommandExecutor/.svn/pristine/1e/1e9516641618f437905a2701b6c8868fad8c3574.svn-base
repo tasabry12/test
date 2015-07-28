@@ -1,0 +1,49 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.venere.ace.utility;
+
+import java.io.IOException;
+import java.util.Map;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+/**
+ *
+ * @author elandolfi
+ */
+public class InternetExplorerCapabilities extends DesiredCapabilities{
+	
+	protected Log oLogger = LogFactory.getLog(getClass());
+
+    public InternetExplorerCapabilities() {
+         super();        
+    }
+    
+    public void setEnvMap(Map<String,String> envMap) throws IOException
+    {
+    	for (String key : envMap.keySet()){
+    		this.setEnv(key,envMap.get(key));
+    	}
+    }
+    
+    public void setEnv(String key, String sValue) throws IOException
+    {
+    	if (key.equals("deleteCache") && Boolean.parseBoolean(sValue)){
+    		try {
+    			oLogger.info("Deleting IE cache");
+    			Runtime.getRuntime().exec("RunDll32.exe InetCpl.cpl,ClearMyTracksByProcess 255");
+    			} catch (IOException e) {
+    				String sMessage = "Error during delete IE cache";
+    				oLogger.error(sMessage);
+    				throw (e);
+    			}
+    	}else {
+    		super.setCapability(key, sValue);
+    	}
+    }
+    
+}

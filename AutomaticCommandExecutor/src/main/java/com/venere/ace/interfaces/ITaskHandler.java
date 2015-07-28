@@ -1,0 +1,66 @@
+/*                   Copyright (c) 2007 Venere Net S.p.A.
+ *                             All Rights Reserved
+ *
+ * This software is the confidential and proprietary information of
+ * Venere Net S.p.A. ("Confidential  Information"). You  shall not disclose
+ * such  Confidential Information and shall use it only in accordance with
+ * the terms  of the license agreement you entered into with Venere Net S.p.A.
+ *
+ * VENERE NET S.P.A. MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY
+ * OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+ * OR NON-INFRINGEMENT. VENERE NET S.P.A. SHALL NOT BE LIABLE FOR ANY DAMAGES
+ * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS
+ * SOFTWARE OR ITS DERIVATIVES.
+ */
+package com.venere.ace.interfaces;
+
+import com.venere.ace.abstracts.AException;
+import com.venere.ace.exception.EHandlerException;
+
+import com.venere.ace.idtos.ICommandRequestDTO;
+import com.venere.utils.dto.PageDTO;
+import java.util.Map;
+
+/**
+ *
+ * @author quatrini
+ */
+public interface ITaskHandler {
+
+    public void startBrowser() throws EHandlerException;
+
+    public ICommandResult open(ICommandRequestDTO obj) throws AException;
+
+    public ICommandResult close(ICommandRequestDTO obj) throws AException;
+
+    public ICommandResult closeAll(ICommandRequestDTO obj) throws AException;
+
+    public ICommandResult click(ICommandRequestDTO obj) throws AException;
+
+    public ICommandResult submit(ICommandRequestDTO obj) throws AException;
+
+    public void toggle(ICommandRequestDTO obj) throws AException;
+
+    public String getText(ICommandRequestDTO obj) throws AException;
+
+    public ICommandResult type(ICommandRequestDTO obj) throws AException;
+
+    public ICommandResult select(ICommandRequestDTO obj) throws AException;
+
+    public ICommandResult selectValue(ICommandRequestDTO obj) throws AException;
+
+    public ICommandResult hover(ICommandRequestDTO obj) throws AException;
+
+    public void setMapSettings(Map oMapSettings);
+
+    public ICommandResult checkUrl(Map oValues) throws AException;
+
+    public boolean isTextPresent(ICommandRequestDTO obj) throws AException;
+
+    public PageDTO getHtmlPage(ICommandRequestDTO obj)throws AException;
+
+    public ICommandResult makeAPrintScreen(ICommandRequestDTO obj)throws AException;
+    
+    public ICommandResult setCookie(ICommandRequestDTO obj)throws AException;
+}

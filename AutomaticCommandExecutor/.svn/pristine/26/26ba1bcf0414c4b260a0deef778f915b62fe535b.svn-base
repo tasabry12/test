@@ -1,0 +1,147 @@
+/*                   Copyright (c) 2007 Venere Net S.p.A.
+ *                             All Rights Reserved
+ *
+ * This software is the confidential and proprietary information of
+ * Venere Net S.p.A. ("Confidential  Information"). You  shall not disclose
+ * such  Confidential Information and shall use it only in accordance with
+ * the terms  of the license agreement you entered into with Venere Net S.p.A.
+ *
+ * VENERE NET S.P.A. MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY
+ * OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+ * OR NON-INFRINGEMENT. VENERE NET S.P.A. SHALL NOT BE LIABLE FOR ANY DAMAGES
+ * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS
+ * SOFTWARE OR ITS DERIVATIVES.
+ */
+package com.venere.utils.test.bl;
+
+import com.venere.ace.dtos.ATaskResultDTO;
+import com.venere.ace.exception.EHandlerException;
+import com.venere.ace.idtos.ITestRequestDTO;
+import com.venere.ace.interfaces.ICommandResult;
+import com.venere.ace.utility.Constants;
+import com.venere.ace.utility.ScreenUtil;
+import static com.venere.utils.test.bl.CheckApp.LOCATION_ELEMENT_POSITION;
+import java.util.Map;
+
+/**
+ *
+ * @author fcastaldi
+ */
+public class CheckApp extends AClassTestBL {
+
+   public static final int LOCATION_ELEMENT_POSITION = 0;
+
+   public CheckApp() {
+      super("CheckApp");
+   }
+
+   public Map<String, Object> getMapResultContainer() {
+      return oMapResultContainer;
+   }
+
+   /**
+    * Exists Text into element tag
+    *
+    * @param oTest that hold information about test
+    *
+    * @return ICommandResult with test result
+    *
+    * @throws EHandlerTaskPerforming
+    */
+   public ICommandResult checkExistText(ITestRequestDTO oTest) throws EHandlerException {
+      checkInput(oTest);
+      ATaskResultDTO oResult = (ATaskResultDTO) compareText(oTest, HelperHtmlBL.getTextElement(oBrowser, (String) oTest.getInputDataList().get(LOCATION_ELEMENT_POSITION)).getText(), Constants.COMPARATION_EQUALS);
+      return oResult;
+   }
+
+   /**
+    * Check if a text is contained and not necessary equals to the text present
+    * into element tag
+    *
+    * @param oTest that hold information about test
+    * @return ICommandResult with test result
+    * @throws EHandlerException
+    */
+   public ICommandResult checkIsContainedText(ITestRequestDTO oTest) throws EHandlerException {
+      checkInput(oTest);
+      HelperHtmlBL.setLocatorType(oTest.getLocatorType());
+      ATaskResultDTO oResult = (ATaskResultDTO) compareText(oTest, HelperHtmlBL.getTextElement(oBrowser, (String) oTest.getInputDataList().get(LOCATION_ELEMENT_POSITION)).getText(), Constants.COMPARATION_CONTAINED);
+      return oResult;
+   }
+
+   /**
+    * Retrieve text from page and compare with input string. If the comparator
+    * input parameter is null, the result will be true (boResultExistText=true)
+    * if the text is contained or equals
+    *
+    * @param oTest that hold information about test
+    * @param sTextGettedfromPage Text taken from page
+    * @return
+    * @throws EHandlerTaskPerforming
+    */
+   private ICommandResult compareText(ITestRequestDTO oTest, String sTextGettedfromPage, String comparation) throws EHandlerException {
+
+      checkInput(oTest);
+      sMessageResult = initializeMessageResult(oTest);
+      if (oListelement != null && oListelement.size() >= 2) {
+         String sElementPosition = (String) oListelement.get(LOCATION_ELEMENT_POSITION);
+         try {
+            String sTypologyTest = "positive";
+            if (oListelement.size() == 3) {
+               sTypologyTest = (String) oListelement.get(2);
+            }
+            String sExpectedText = (String) oListelement.get(1);
+            if (sExpectedText.contains("{")) {
+               sExpectedText = sExpectedText.replace("{", "").replace("}", "");
+               sExpectedText = (String) oMapResultContainer.get(sExpectedText);
+               if (sExpectedText == null) {
+                  sExpectedText = "";
+                  oLogger.warn("Missing element in map , i look for  {" + oListelement.get(1) + "}. This field will feel with blank ");
+               }
+            }
+            
+            
+            boolean boResultExistText = false;
+            if (sTextGettedfromPage != null) {
+               if (Constants.COMPARATION_EQUALS.equals(comparation)) {
+                  boResultExistText = sTextGettedfromPage.equalsIgnoreCase(sExpectedText);
+               } else if (Constants.COMPARATION_CONTAINED.equals(comparation)) {
+                  boResultExistText = (sTextGettedfromPage.toLowerCase()).contains(sExpectedText.toLowerCase());
+               } else {
+                  boResultExistText = sTextGettedfromPage.equalsIgnoreCase(sExpectedText) || sTextGettedfromPage.contains(sExpectedText);
+               }
+            }
+
+            if (boResultExistText && sTypologyTest.equals("positive")) {
+               sMessageResult += "Text [" + sExpectedText + "] present as Expected in Element " + sElementPosition;
+            } else {
+               if (!boResultExistText && sTypologyTest.equals("negative")) {
+                  sMessageResult += "Text [" + sExpectedText + "] missing as Expected in Element " + sElementPosition;
+               } else {
+                  boResultTest = false;
+                  if (sTypologyTest.equals("positive")) {
+                     sMessageResult += "Text [" + sExpectedText + "] missing but Expected in Element " + sElementPosition;
+                  } else {
+                     sMessageResult += "Text [" + sExpectedText + "] in Element " + sElementPosition + " : Something is wrong";
+                  }
+               }
+            }
+         } catch (Exception ex) {
+            String sMessage = ex.getMessage();
+            setExceptionMessageResult(oTest);
+            oLogger.error(sMessageResult);
+            oLogger.error(sMessage);
+            ScreenUtil oUtil = new ScreenUtil(oBrowser);
+            oUtil.makeAPrintScreen(oTest.getMethodName());
+            throw new EHandlerException(EHandlerException.HandlerErrorCode.ACTION_TASK, sMessage, ex);
+         }
+      } else {
+         boResultTest = false;
+         sMessageResult = "To perform this Check you need at least 3 element.Page, xpath and text to compare are mandatory and optional value is positive or negative ";
+      }
+      ATaskResultDTO oResult = populateResult(oTest);
+      return oResult;
+
+   }
+}

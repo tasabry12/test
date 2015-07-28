@@ -1,0 +1,107 @@
+/*                   Copyright (c) 2007 Venere Net S.p.A.
+ *                             All Rights Reserved
+ *
+ * This software is the confidential and proprietary information of
+ * Venere Net S.p.A. ("Confidential  Information"). You  shall not disclose
+ * such  Confidential Information and shall use it only in accordance with
+ * the terms  of the license agreement you entered into with Venere Net S.p.A.
+ *
+ * VENERE NET S.P.A. MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY
+ * OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+ * OR NON-INFRINGEMENT. VENERE NET S.P.A. SHALL NOT BE LIABLE FOR ANY DAMAGES
+ * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS
+ * SOFTWARE OR ITS DERIVATIVES.
+ */
+ 
+
+package com.venere.ace.abstracts;
+
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.openqa.selenium.Cookie;
+import org.openqa.selenium.WebDriver;
+
+/**
+ * Define the Base behaviour of a browser
+ * @author quatrini
+ */
+public abstract class  ABrowser extends AHandler{
+
+   protected WebDriver    oBrowser;
+   protected long         lDelayonChangeClick;
+   protected Log          oLogger = LogFactory.getLog(getClass());
+   protected long         lSecondWaitsOnFindelement;
+   protected Set<String>  oFollowWindowBlacklist;
+   protected String       sDefaultCookiePath;
+   protected String       sDefaultCookieDomain;
+
+   public String getDefaultCookiePath() {
+      return sDefaultCookiePath;
+   }
+
+   public void setDefaultCookiePath(String sDefaultCookiePath) {
+      this.sDefaultCookiePath = sDefaultCookiePath;
+   }
+
+   public String getDefaultCookieDomain() {
+      return sDefaultCookieDomain;
+   }
+
+   public void setDefaultCookieDomain(String sDefaultCookieDomain) {
+      this.sDefaultCookieDomain = sDefaultCookieDomain;
+   }
+
+   public Set<String> getFollowWindowBlacklist() {
+      return oFollowWindowBlacklist;
+   }
+
+   public void setFollowWindowBlacklist(Set<String> oFollowWindowBlacklist) {  
+      this.oFollowWindowBlacklist = oFollowWindowBlacklist;
+   }
+
+   public ABrowser(String sClassName){
+      super(sClassName);
+   }
+   public long getSecondWaitsOnFindElement() {
+      return lSecondWaitsOnFindelement;
+   }
+
+   public void setSecondWaitsOnFindElement(long lSecondWaitsOnFindelement) {
+      this.lSecondWaitsOnFindelement = lSecondWaitsOnFindelement;
+   }
+   
+
+   /**
+    * Get the Web Driver Based on Selenium core
+    *
+    * @return an instance of WebDriver
+    */
+   public WebDriver getDriver() {
+      return oBrowser;
+   }
+
+   /**
+    * Set the Web Driver Based on Selenium core
+    *
+    * @param driver that drive a browser like FireFox, Chrome Ie and other.
+    */
+   public void setDriver(WebDriver driver) {
+      this.oBrowser = driver;
+      oBrowser.manage().timeouts().implicitlyWait(lSecondWaitsOnFindelement, TimeUnit.MILLISECONDS);
+//      oBrowser.manage().window().maximize();
+    
+   }
+
+   /**
+    * Define a custom delay for driver after click, in particular case it is necessary because the engine doesn't wait automatically
+    *
+    * @param sDelay a string that represent the millisecond
+    */
+   public void setDelayOnClick(String sDelay){
+      lDelayonChangeClick = Long.valueOf(sDelay);
+   }
+
+}
